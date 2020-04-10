@@ -1,6 +1,7 @@
 ## TCSS 360 "Cheetahs" project group!
 
 This super awesome group contains the following four members: Timmy, Sam, Wesley, and Ella. 
+
 Last updated: April 10, 2020 
 
 ### Weekly Minutes and Task Matrices
