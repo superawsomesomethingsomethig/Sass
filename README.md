@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## TCSS 360 "Cheetas" group 
 
 You can use the [editor on GitHub](https://github.com/audreyeg/Testing/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
