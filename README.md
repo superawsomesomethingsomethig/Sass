@@ -1,12 +1,12 @@
-## Welcome to GitHub Pages
+## TCSS 360 "Cheetas" project group!
 
-You can use the [editor on GitHub](https://github.com/audreyeg/Testing/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This super awesome group contains the following four members: Timmy, Sam, Wesley, and Ella. 
+Last updated: April 10, 2020 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Weekly Meetings and task matrices
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Link to task matrice spreadsheet: 
+https://docs.google.com/spreadsheets/d/1mNHH7dM14qsG3Y4BOzqaAI3t0bw2Qtn8rAJAhg1m14A/edit?usp=sharing
 
 ```markdown
 Syntax highlighted code block
