@@ -13,7 +13,7 @@ Last updated: April 10, 2020
 
 #### Contact
 
-Contact email: superawsomeemail43212@gmail.com
+Contact email: superawsomeemail43212 *at* gmail *dot* com
 
 
 
