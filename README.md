@@ -6,7 +6,7 @@ Last updated: April 10, 2020
 ### Weekly Meetings and task matrices
 
 Link to task matrice spreadsheet: 
-https://docs.google.com/spreadsheets/d/1mNHH7dM14qsG3Y4BOzqaAI3t0bw2Qtn8rAJAhg1m14A/edit?usp=sharing
+<a>https://docs.google.com/spreadsheets/d/1mNHH7dM14qsG3Y4BOzqaAI3t0bw2Qtn8rAJAhg1m14A/edit?usp=sharing</a>
 
 ```markdown
 Syntax highlighted code block
