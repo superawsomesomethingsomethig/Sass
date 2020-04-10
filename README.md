@@ -11,6 +11,9 @@ Last updated: April 10, 2020
 
 [Link to Task Matrice spreadsheet](https://docs.google.com/spreadsheets/d/1mNHH7dM14qsG3Y4BOzqaAI3t0bw2Qtn8rAJAhg1m14A/edit?usp=sharing)
 
+#### Contact
+
+Contact email: superawsomeemail43212@gmail.com
 
 
 
