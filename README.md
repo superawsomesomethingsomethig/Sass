@@ -1,4 +1,4 @@
-## TCSS 360 "Cheetahs" project group!
+## TCSS 360 "SASS" project group!
 
 Last updated: April 10, 2020 
 
