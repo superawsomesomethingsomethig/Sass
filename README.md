@@ -1,37 +1,28 @@
-## TCSS 360 "Cheetas" group 
+master
+## TCSS 360 "SASS" project group!
+=======
 
-You can use the [editor on GitHub](https://github.com/audreyeg/Testing/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Last updated: April 17, 2020 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Team members: Timmy, Sam, Wesley, and Ella. 
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Weekly Minutes and Task Matrices
 
-```markdown
-Syntax highlighted code block
+[Link to Weekly Minutes document](https://docs.google.com/document/d/1zSX0TDvowmUO4UPRoQuNk334yatnHsm67OCB3xvryW0/edit?usp=sharing)
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+[Link to Task Matrices spreadsheet](https://docs.google.com/spreadsheets/d/1mNHH7dM14qsG3Y4BOzqaAI3t0bw2Qtn8rAJAhg1m14A/edit?usp=sharing)
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+### Check-ins and Deliverables
+[Link to Check-Ins](https://docs.google.com/document/d/12lrKaMwixiG1s6CuHg8wI4yMIYFkS0V8aONHXB-g6cU/edit)
 
-[Link](url) and ![Image](src)
-```
+#### Contact
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Contact email: superawsomeemail43212 *at* gmail *dot* com
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/audreyeg/Testing/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
