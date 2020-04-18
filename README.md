@@ -1,4 +1,6 @@
+master
 ## TCSS 360 "SASS" project group!
+=======
 
 Last updated: April 17, 2020 
 
