@@ -16,6 +16,8 @@ Team members: Timmy, Sam, Wesley, and Ella.
 ### Check-ins and Deliverables
 [Link to Check-Ins](https://docs.google.com/document/d/12lrKaMwixiG1s6CuHg8wI4yMIYFkS0V8aONHXB-g6cU/edit)
 
+[Link to Deliverable 1](https://docs.google.com/document/d/1q_9NBeZAMT3I9BVjKCGexSMu5GIZJFAojzHog3JWP-E/edit?usp=sharing)
+
 #### Contact
 
 Contact email: superawsomeemail43212 *at* gmail *dot* com
