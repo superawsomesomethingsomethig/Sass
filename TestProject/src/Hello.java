@@ -1,12 +1,3 @@
-/*
- * this is a test to see if everyone can use git and eclipse 
- * please pull this into your system, comment your name, and push
- * it back into the repository so we know everyone can do it :) 
- */
-
-//
-// Ella 
-//
 
 public class Hello {
 		
