@@ -2,6 +2,7 @@ package superawsomesomethingsomethig;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,6 +40,7 @@ public class HomeScreen extends JFrame
 	{
 		add(homePanel, BorderLayout.NORTH);
 		add(buttonPanel, BorderLayout.SOUTH);
+		
 	}
 	private void setUpHomePanel()
 	{
