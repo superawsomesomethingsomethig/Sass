@@ -8,5 +8,6 @@ public class AppMain
 	{
 		HomeScreen homeScreen = new HomeScreen();
 		homeScreen.setVisible(true);
+		
 	}
 }
