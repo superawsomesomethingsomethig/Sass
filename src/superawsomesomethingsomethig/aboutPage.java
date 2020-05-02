@@ -7,21 +7,38 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 
 public class aboutPage extends JFrame{
-	JPanel aboutPanel = new JPanel();
-	BorderLayout layout = new BorderLayout();
+	
+	private JPanel aboutPanel;
 	
 	//constructor
-	public aboutPage() {
-		buildPanel();
+	public aboutPage() 
+	{
+		super("About Page");
+		aboutPanel = new JPanel();
+		start();
 	}	
-	public static void buildPanel() {
-		JFrame frame = new JFrame("About");
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setOpaque(true);
+	private void start() 
+	{
+		setVisible(true);
+		setUpFrame();
+		setUpAboutPanel();
+        pack();
+        setLocationRelativeTo(null);
+
+	}
+	private void setUpFrame()
+	{
+		add(aboutPanel, BorderLayout.NORTH);
+
+	}
+	private void setUpAboutPanel()
+	{
+		final JTextArea area1 = new JTextArea("Developers:\nTimmyRoma");
+		add(area1);
 	}
 
 }
