@@ -50,6 +50,7 @@ public class aboutPage extends JFrame{
 	}
 	private void setUpVersionPanel()
 	{
+		
 		final JTextArea area2 = new JTextArea("Version:\n ");
 		versionPanel.add(area2);
 		Properties prop = new Properties();
@@ -58,9 +59,12 @@ public class aboutPage extends JFrame{
 		input = getClass().getClassLoader().getResourceAsStream("build_info.properties");
 		prop.load(input);
 		System.out.print("Version: ");
-		System.out.println(prop.getProperty("build.revision.number"));
-		
-
+		String revisionNumber = new String(prop.getProperty("build.revision.number"));
+		String majorNumber = new String(prop.getProperty("build.major.number"));
+		String minorNumber = new String(prop.getProperty("build.minor.number"));
+		String versionNumber = new String(revisionNumber + "." + majorNumber + "." + minorNumber);
+		System.out.print(versionNumber);
+		area2.append(versionNumber);
 	
 	} catch (IOException ex) {
 	    ex.printStackTrace();
