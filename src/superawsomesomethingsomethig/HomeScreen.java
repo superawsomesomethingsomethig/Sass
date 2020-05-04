@@ -2,44 +2,66 @@ package superawsomesomethingsomethig;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.Image;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
+
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
+
 @SuppressWarnings("serial")
-public class HomeScreen extends JFrame {
-	
+public class HomeScreen extends JFrame 
+{
 	private JPanel homePanel;
+	private JPanel buttonPanel;
 	private JButton aboutButton;
-	public HomeScreen() {
-		BorderLayout layout = new BorderLayout();
-		setLayout(layout);
-		setSize(800,600);
-		aboutButton = new JButton("About");
-		homePanel = new Background();
-		homePanel.add(new JLabel("HOME"));
-		homePanel.add(aboutButton, new GridBagConstraints());
-		aboutButton.addActionListener(new ButtonListener());
-		homePanel.setBackground(Color.WHITE);
-		add(homePanel);
+	//private aboutPage about;
+	public HomeScreen() 
+	{
+		super("H.O.M.E");
+		start();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	private static class Background extends JPanel {
-		private Image image;
-		public Background() {
-			image = new ImageIcon("folder/m.jpg").getImage();
-		}
-		
-		public void paintComponent(Graphics g) {
-			g.drawImage(image, 0, 0, null);
-		}
+	private void start()
+	{
+		setUpHomePanel();
+		setUpButtonPanel();
+		setUpFrame();
+		pack();
+		setLocationRelativeTo(null);
 	}
+	private void setUpFrame()
+	{
+		add(homePanel, BorderLayout.NORTH);
+		add(buttonPanel, BorderLayout.SOUTH);
+		
+	}
+	private void setUpHomePanel()
+	{
+		homePanel = new JPanel();
+		homePanel.add(new JLabel("HOME"));
+		homePanel.setBackground(Color.WHITE);
+	}
+	private void setUpButtonPanel()
+	{
+		buttonPanel = new JPanel();
+		aboutButton = new JButton("About");
+    	aboutButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent theEvent)
+            {	
+            	new aboutPage();
+            }
+        });
+    	buttonPanel.add(aboutButton);
+	}
+	
+
 }
