@@ -57,7 +57,7 @@ public class HomeScreen extends JFrame
             @Override
             public void actionPerformed(final ActionEvent theEvent)
             {	
-            	new aboutPage();
+            	new AboutPage();
             }
         });
     	buttonPanel.add(aboutButton);

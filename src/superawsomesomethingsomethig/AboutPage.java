@@ -1,27 +1,24 @@
 package superawsomesomethingsomethig;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 
 
-public class aboutPage extends JFrame{
+@SuppressWarnings("serial")
+public class AboutPage extends JFrame{
 	
 	private JPanel aboutPanel;
 	private JPanel versionPanel;
 	
 	//constructor
-	public aboutPage() 
+	public AboutPage() 
 	{
 		super("About Page");
 		aboutPanel = new JPanel();
@@ -45,7 +42,7 @@ public class aboutPage extends JFrame{
 	}
 	private void setUpAboutPanel()
 	{
-		final JTextArea area1 = new JTextArea("Developers:\nTimmy Roma\nElla Gainey");
+		final JTextArea area1 = new JTextArea("Developers:\nTimmy Roma\nElla Gainey\nSam Spillers\nWesley Elliott");
 		aboutPanel.add(area1);
 	}
 	private void setUpVersionPanel()
@@ -63,7 +60,7 @@ public class aboutPage extends JFrame{
 		String majorNumber = new String(prop.getProperty("build.major.number"));
 		String minorNumber = new String(prop.getProperty("build.minor.number"));
 		String versionNumber = new String(revisionNumber + "." + majorNumber + "." + minorNumber);
-		System.out.print(versionNumber);
+		System.out.println(versionNumber);
 		area2.append(versionNumber);
 	
 	} catch (IOException ex) {
