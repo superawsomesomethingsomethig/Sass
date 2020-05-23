@@ -42,7 +42,7 @@ public class AboutPage extends JFrame{
 	}
 	private void setUpAboutPanel()
 	{
-		final JTextArea area1 = new JTextArea("Developers:\nTimmy Roma\nElla Gainey\nSam Spillers");
+		final JTextArea area1 = new JTextArea("Developers:\nTimmy Roma\nElla Gainey\nSam Spillers\nWesley Elliott");
 		aboutPanel.add(area1);
 	}
 	private void setUpVersionPanel()
