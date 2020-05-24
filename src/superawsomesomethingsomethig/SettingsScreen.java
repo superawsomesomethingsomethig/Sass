@@ -109,12 +109,14 @@ public class SettingsScreen extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				importSettings();
+				InfoPopUp.importInfoBox("Settings Imported!", "Settings");
 			}
 		});
 		exportButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				settings.exportFile(DEFAULT_FILE_NAME);
+				InfoPopUp.exportInfoBox("Settings Exported!", "Settings");
 			}
 		});
 		settingsPanel.add(makeRow(importButton, exportButton));

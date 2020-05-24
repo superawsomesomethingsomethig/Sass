@@ -1,13 +1,18 @@
 package superawsomesomethingsomethig;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 
 
@@ -25,6 +30,8 @@ public class AboutPage extends JFrame{
 		versionPanel = new JPanel();
 		start();
 	}	
+	
+	//author: @Timmy
 	private void start() 
 	{
 		setVisible(true);
@@ -35,17 +42,34 @@ public class AboutPage extends JFrame{
         setLocationRelativeTo(null);
 
 	}
+	
+	//author: @Timmy
 	private void setUpFrame()
 	{
-		add(aboutPanel, BorderLayout.NORTH);
+		//setPreferredSize(new Dimension(400, 300));
+		add(aboutPanel, BorderLayout.CENTER);
 		add(versionPanel, BorderLayout.SOUTH);
+		
+		
 	}
+	//author1: @Timmy
+	//author2: @Ella
+	//author3: @Sam
+	//author4: @Wesley
 	private void setUpAboutPanel()
 	{
-		final JTextArea area1 = new JTextArea("Developers:\nTimmy Roma\nElla Gainey\nSam Spillers\nWesley Elliott");
+
+		final JTextArea area1 = new JTextArea();
+		area1.setBackground(Color.WHITE);
+		area1.setText("Developers:\nTimmy Roma\nElla Gainey\nSam Spillers\nWesley Elliott");
+		Font font = new Font("Chalboard", Font.PLAIN,15);
+		area1.setFont(font);
 		area1.setEditable(false);
 		aboutPanel.add(area1);
+		
 	}
+	
+	//author: @Ella
 	private void setUpVersionPanel()
 	{
 		
