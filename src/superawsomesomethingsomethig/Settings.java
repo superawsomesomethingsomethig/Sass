@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Observable;
 import java.util.Scanner;
 
+//author: @Wesley 
 public class Settings {
 
 	private String firstName;
