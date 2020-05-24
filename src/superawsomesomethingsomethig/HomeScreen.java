@@ -21,6 +21,7 @@ public class HomeScreen extends JFrame
 	private JPanel homePanel;
 	private JPanel buttonPanel;
 	private JButton aboutButton;
+	private JButton settingsButton;
 	//private aboutPage about;
 	public HomeScreen() 
 	{
@@ -52,6 +53,7 @@ public class HomeScreen extends JFrame
 	{
 		buttonPanel = new JPanel();
 		aboutButton = new JButton("About");
+		settingsButton = new JButton("Settings");
     	aboutButton.addActionListener(new ActionListener()
         {
             @Override
@@ -60,7 +62,16 @@ public class HomeScreen extends JFrame
             	new AboutPage();
             }
         });
+    	settingsButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(final ActionEvent theEvent)
+            {	
+            	new SettingsScreen();
+            }
+        });
     	buttonPanel.add(aboutButton);
+    	buttonPanel.add(settingsButton);
 	}
 	
 
