@@ -43,12 +43,14 @@ public class AboutPage extends JFrame{
 	private void setUpAboutPanel()
 	{
 		final JTextArea area1 = new JTextArea("Developers:\nTimmy Roma\nElla Gainey\nSam Spillers\nWesley Elliott");
+		area1.setEditable(false);
 		aboutPanel.add(area1);
 	}
 	private void setUpVersionPanel()
 	{
 		
 		final JTextArea area2 = new JTextArea("Version:\n ");
+		area2.setEditable(false);
 		versionPanel.add(area2);
 		Properties prop = new Properties();
 		InputStream input = null;
