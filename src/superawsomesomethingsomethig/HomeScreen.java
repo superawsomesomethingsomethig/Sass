@@ -2,16 +2,33 @@ package superawsomesomethingsomethig;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-
-
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+
+
+
+
+
+
 
 
 
@@ -26,6 +43,7 @@ public class HomeScreen extends JFrame
 	public HomeScreen() 
 	{
 		super("H.O.M.E");
+		setLayout(new BorderLayout());
 		start();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -37,18 +55,39 @@ public class HomeScreen extends JFrame
 		pack();
 		setLocationRelativeTo(null);
 	}
+	
+	//author 1: @Timmy
+	//author 2: @Ella
 	private void setUpFrame()
 	{
-		add(homePanel, BorderLayout.NORTH);
+		setPreferredSize(new Dimension(800, 500));
+		add(homePanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
+
+		
+		
 	}
+	//author 1: @Timmy
+	//author 2: @Ella
 	private void setUpHomePanel()
 	{
 		homePanel = new JPanel();
-		homePanel.add(new JLabel("HOME"));
+		homePanel.setLayout(new BorderLayout());
+		JLabel homeLabel = new JLabel("H.O.M.E");
+		homeLabel.setFont((new Font("Chalkboard", Font.BOLD, 48)));
+		homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		homePanel.add(homeLabel, BorderLayout.CENTER);
+		
+		//generate background
+//		ImageIcon image = new ImageIcon("background/background.jpg");
+//		JLabel label = new JLabel("", image, JLabel.CENTER);
+//		homePanel.add( label, BorderLayout.CENTER );
+		
+		//Color homeColor = new Color(0,160,180);
 		homePanel.setBackground(Color.WHITE);
 	}
+	
 	private void setUpButtonPanel()
 	{
 		buttonPanel = new JPanel();
