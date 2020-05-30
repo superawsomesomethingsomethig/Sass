@@ -21,25 +21,68 @@ public class House implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Room> roomList;
+	private int level;
+	private Room currentRoom;
+	private Appliance currentAppliance;
 	
-	public House() {
+	
+	
+	public House() 
+	{
+		currentRoom = null;
+		currentAppliance = null;
 		roomList = new LinkedList<Room>();
+		level = 0;
+		new Room_UI(roomList,this);
 	}
-	public List<Room> getList() {
+	public void generateUI(Object newObject)
+	{
+		if(level == 0)
+		{
+			level = 1;
+			currentRoom = newObject;
+			new Appliance_UI(currentRoom,this);
+		}
+		else if(level == 1)
+		{
+			level = 2;
+			currentAppliance = newObject;
+			new Document_UI(currentAppliance,this);
+		}
+	}
+	public void back()
+	{
+		if(level == 2)
+		{
+			level = 1;
+			new Appliance_UI(currentRoom,this);
+		}
+		if(level == 1)
+		{
+			level = 0;
+			new Room_UI(roomList,this);
+		}
+	}
+	public List<Room> getList() 
+	{
 		return new LinkedList<Room>(roomList);  // List is copied to avoid editing errors
 	}
-	public Room create(String roomName) {
+	public Room create(String roomName) 
+	{
 		Room room = new Room(roomName);
 		roomList.add(room);
 		return room;
 	}
-	public void create(Room room) {
+	public void create(Room room) 
+	{
 		roomList.add(room);
 	}
-	public void destroy(Room room) {
+	public void destroy(Room room) 
+	{
 		roomList.remove(room);
 	}
-	public String toString() {
+	public String toString() 
+	{
 		String output = "House[ ";
 		for (int i = 0; i < roomList.size(); i++) {
 			output += roomList.get(i).toString();
