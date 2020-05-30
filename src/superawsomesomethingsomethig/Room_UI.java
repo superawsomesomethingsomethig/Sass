@@ -24,7 +24,7 @@ public class Room_UI extends JPanel implements Runnable, MouseListener
 	
 	public Room_UI()
 	{
-		theRoom = new Room();
+		theRoom = new Room("Test");
 		theFrame = new JFrame();
 		thread = new Thread(this);
 		thread.start();

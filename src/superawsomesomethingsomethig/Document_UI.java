@@ -22,7 +22,7 @@ public class Document_UI extends JPanel implements Runnable, MouseListener
 	
 	public Document_UI()
 	{
-		theDocument = new Document();
+		theDocument = new Document("Test");
 		theFrame = new JFrame();
 		thread = new Thread(this);
 		thread.start();

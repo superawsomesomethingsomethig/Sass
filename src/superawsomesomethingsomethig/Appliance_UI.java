@@ -25,7 +25,7 @@ public class Appliance_UI extends JPanel implements Runnable, MouseListener
 		theFrame = new JFrame();
 		thread = new Thread(this);
 		thread.start();
-		theAppliance = new Appliance();
+		theAppliance = new Appliance("test");
 
 	}
 	public void paintComponent(Graphics g)

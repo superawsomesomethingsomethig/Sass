@@ -1,32 +1,51 @@
 package superawsomesomethingsomethig;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
-import home.Document;
-
-public class Appliance 
+public class Appliance implements Serializable
 {
-	private Map<String,Document> documentList;
-	private String roomName;
+	/**
+	 * Default Serial UID for Appliance
+	 */
+	private static final long serialVersionUID = 3L;
+	private List<Document> documentList;
+	private String name;
 	
-	public Appliance()
+	public Appliance(String name)
 	{
-		documentList = new HashMap<>();
+		documentList = new LinkedList<Document>();
+		this.name = name;
 	}
-	//retrieve documents and build the list.
-	private void BuildList()
-	{
-		
+	public List<Document> getList() {
+		return new LinkedList<Document>(documentList);  // List is copied to avoid editing errors
 	}
-	//retrieve a specified Appliance
-	public Document getDocument(String name)
-	{
-		
+	public Document create(String documentName) {
+		Document document = new Document(documentName);
+		documentList.add(document);
+		return document;
 	}
-	//
-	public void saveAppliance()
-	{
-		
+	public void create(Document document) {
+		documentList.add(document);
+	}
+	public void destroy(Document document) {
+		documentList.remove(document);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String toString() {
+		String output = "Appliance(\"" + name + "\")[ ";
+		for (int i = 0; i < documentList.size(); i++) {
+			output += documentList.get(i).toString();
+			if (i < documentList.size() - 1) {  // Fencepost check
+				output += ", ";
+			}
+		}
+		return output + " ]";
 	}
 }
