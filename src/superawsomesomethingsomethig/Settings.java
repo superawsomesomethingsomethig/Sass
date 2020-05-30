@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Observable;
 import java.util.Scanner;
 
+//author: @Wesley 
 public class Settings {
 
 	private String firstName;
