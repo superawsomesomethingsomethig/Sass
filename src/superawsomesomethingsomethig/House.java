@@ -52,7 +52,7 @@ public class House implements Serializable
 		{
 			level = 1;
 			currentRoom = (Room) newObject;
-			//applianceUI = new Appliance_UI(currentRoom,this);
+			applianceUI = new Appliance_UI(currentRoom,this);
 			roomUI.setVisible(false);
 		}
 		else if(level == 1)
@@ -109,12 +109,12 @@ public class House implements Serializable
 		for(Iterator<Room> listIterator = roomList.iterator(); listIterator.hasNext();)
 		{
 			Room temp = listIterator.next();
-			System.out.println(temp.getName() + ',' + name);
+			//4System.out.println(temp.getName() + ',' + name);
 			if(temp.getName().equals(name))
 			{
 				removed = true;
 				roomList.remove(index);
-				System.out.println(temp.getName() + ',' + name);
+				//System.out.println(temp.getName() + ',' + name);
 				break;
 			}
 			index++;
