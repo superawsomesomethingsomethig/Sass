@@ -74,10 +74,18 @@ public class HomeScreen extends JFrame
 	{
 		homePanel = new JPanel();
 		homePanel.setLayout(new BorderLayout());
-		JLabel homeLabel = new JLabel("H.O.M.E");
-		homeLabel.setFont((new Font("Chalkboard", Font.BOLD, 48)));
-		homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		homePanel.add(homeLabel, BorderLayout.CENTER);
+		//JLabel homeLabel = new JLabel("H.O.M.E");
+		//this button is pressed to open the application's main functionality 
+		JButton homeButton = new JButton("H.O.M.E");
+		homeButton.setFont((new Font("Chalkboard", Font.BOLD, 48)));
+		homeButton.setHorizontalAlignment(SwingConstants.CENTER);
+		homePanel.add(homeButton, BorderLayout.CENTER);
+		homeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new House();
+			}
+		});
 		
 		//generate background
 //		ImageIcon image = new ImageIcon("background/background.jpg");
