@@ -39,6 +39,7 @@ public class HomeScreen extends JFrame
 	private JPanel buttonPanel;
 	private JButton aboutButton;
 	private JButton settingsButton;
+	private House theHouse;
 	//private aboutPage about;
 	public HomeScreen() 
 	{
@@ -46,6 +47,11 @@ public class HomeScreen extends JFrame
 		setLayout(new BorderLayout());
 		start();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		try {
+			theHouse = House.loadHouse("houseFile.hf");
+		} catch (IOException | ClassNotFoundException e) {
+			theHouse = new House();
+		}
 	}
 	private void start()
 	{
@@ -83,7 +89,8 @@ public class HomeScreen extends JFrame
 		homeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new House();
+				theHouse.start();
+				setVisible(false);
 			}
 		});
 		

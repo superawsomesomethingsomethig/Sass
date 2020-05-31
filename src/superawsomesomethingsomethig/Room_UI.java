@@ -112,10 +112,10 @@ public class Room_UI extends JFrame
 		}
 		
 		private void deleteRoom() {
-//			String deleteRoomName = JOptionPane.showInputDialog( null, "Enter name of room to be deleted: ", "Delete Room", JOptionPane.PLAIN_MESSAGE);
-//			Room delete = myHouse.getRoom(deleteRoomName);
-//			myHouse.destroy(delete);
-			isDelete = true;
+			String deleteRoomName = JOptionPane.showInputDialog( null, "Enter name of room to be deleted: ", "Delete Room", JOptionPane.PLAIN_MESSAGE);
+			Room delete = myHouse.getRoom(deleteRoomName);
+			myHouse.destroy(delete);
+			//isDelete = true;
 		}
 		
 		private void newButton(String name) {
@@ -129,7 +129,8 @@ public class Room_UI extends JFrame
 	        roomButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//myHouse.generateUI(myHouse.getRoom(name));
+					//System.out.println(name);
+					myHouse.generateUI(myHouse.getRoom(name));
 				}
 			});
 	        

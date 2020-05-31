@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +34,9 @@ public class House implements Serializable
 		currentAppliance = null;
 		roomList = new LinkedList<Room>();
 		level = 0;
+	}
+	public void start()
+	{
 		new Room_UI(roomList,this);
 	}
 	public void generateUI(Object newObject)
@@ -73,6 +77,12 @@ public class House implements Serializable
 		Room room = new Room(roomName);
 		roomList.add(room);
 		getList();
+		try {
+			House.saveHouse(this, "houseFile.hf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return room;
 	}
 	public void create(Room room) 
@@ -82,6 +92,22 @@ public class House implements Serializable
 	public void destroy(Room room) 
 	{
 		roomList.remove(room);
+		try {
+			House.saveHouse(this, "houseFile.hf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public Room getRoom(String name)
+	{
+		for(Iterator<Room> listIterator = roomList.iterator(); listIterator.hasNext();)
+		{
+			Room temp = listIterator.next();
+			if(temp.getName() == name);
+			return temp;
+		}
+		return null;
+		
 	}
 //	public String toString() 
 //	{
