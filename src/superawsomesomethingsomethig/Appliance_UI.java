@@ -3,6 +3,7 @@ package superawsomesomethingsomethig;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,8 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +30,7 @@ public class Appliance_UI extends JFrame{
 	private JTextField addApplianceName;
 	private Room myRoom;
 	private Room myApplianceList;
+	private House myHouse;
 
 	//constructor
 			public Appliance_UI(Room currentRoom, House house)
@@ -35,6 +39,7 @@ public class Appliance_UI extends JFrame{
 				appliancePanel = new JPanel();
 				buttonPanel = new JPanel();
 				myRoom = currentRoom;
+				myHouse = house;
 				//myApplianceList = currentRoom;
 				addApplianceName = new JTextField("New Appliance Name: ");
 				start();	
@@ -65,9 +70,9 @@ public class Appliance_UI extends JFrame{
 			
 			private void setUpAppliancePanel()
 			{
-				JLabel appliances = new JLabel("Appliance List: ");
+				JLabel appliances = new JLabel(myRoom.getName().toUpperCase() + "'S Appliance List: " );
 				appliances.setBackground(Color.WHITE);
-			    appliances.setFont((new Font("Chalkboard", Font.BOLD, 32)));
+			    appliances.setFont((new Font("Chalkboard", Font.BOLD, 28)));
 				appliancePanel.add(appliances);
 				JButton addAppliance = new JButton("Add Appliance");
 				
@@ -87,23 +92,55 @@ public class Appliance_UI extends JFrame{
 				});
 				appliancePanel.add(addAppliance);
 				appliancePanel.add(removeAppliance);
+				pack();
 			}
 			
 			private void newAppliance() {
-				String addApplianceName = JOptionPane.showInputDialog( null, "Enter name for new room: ", "New Room Name", JOptionPane.PLAIN_MESSAGE);
+				String addApplianceName = JOptionPane.showInputDialog( null, "Enter name for new appliance: ", "New Appliance Name", JOptionPane.PLAIN_MESSAGE);
 				myRoom.create(addApplianceName);
-				//newButton(addRoomName);
+				newButton(addApplianceName);
 				repaint();
 				revalidate();
 			}
 			
 			private void deleteAppliance() {
-				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of room to be deleted: ", "Delete Room", JOptionPane.PLAIN_MESSAGE);
+				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
 				//myRoom.destroy(deleteApplianceName);			
 				//startButtons();
 				repaint();
 				revalidate();
 			}
+			
+			private void newButton(String name) {
+
+				JButton roomButton = new JButton(name);
+				buttonPanel.add(roomButton);
+				BoxLayout boxLayout1 = new BoxLayout(buttonPanel, BoxLayout.Y_AXIS);
+				buttonPanel.setLayout(boxLayout1);
+				roomButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		        roomButton.setFocusable(false);
+		        roomButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println(name);
+						//myHouse.generateUI(myHouse.getRoom(name));
+					}
+				});
+		        
+		        pack();
+				repaint();
+				revalidate();
+			}
+			
+//			private void startButtons()
+//			{
+//				buttonPanel.removeAll();
+//				for(Iterator<Room> listIterator = myApplianceList.iterator(); listIterator.hasNext();)
+//				{
+//					Room temp = listIterator.next();
+//					newButton(temp.getName());
+//				}
+//			}
 			
 			
 }
