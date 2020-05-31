@@ -39,6 +39,7 @@ public class HomeScreen extends JFrame
 	private JPanel buttonPanel;
 	private JButton aboutButton;
 	private JButton settingsButton;
+	private House theHouse;
 	//private aboutPage about;
 	public HomeScreen() 
 	{
@@ -46,6 +47,11 @@ public class HomeScreen extends JFrame
 		setLayout(new BorderLayout());
 		start();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		try {
+			theHouse = House.loadHouse("houseFile.hf");
+		} catch (IOException | ClassNotFoundException e) {
+			theHouse = new House();
+		}
 	}
 	private void start()
 	{
@@ -63,10 +69,6 @@ public class HomeScreen extends JFrame
 		setPreferredSize(new Dimension(800, 500));
 		add(homePanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
-		
-
-		
-		
 	}
 	//author 1: @Timmy
 	//author 2: @Ella
@@ -74,10 +76,19 @@ public class HomeScreen extends JFrame
 	{
 		homePanel = new JPanel();
 		homePanel.setLayout(new BorderLayout());
-		JLabel homeLabel = new JLabel("H.O.M.E");
-		homeLabel.setFont((new Font("Chalkboard", Font.BOLD, 48)));
-		homeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		homePanel.add(homeLabel, BorderLayout.CENTER);
+		//JLabel homeLabel = new JLabel("H.O.M.E");
+		//this button is pressed to open the application's main functionality 
+		JButton homeButton = new JButton("H.O.M.E");
+		homeButton.setFont((new Font("Chalkboard", Font.BOLD, 48)));
+		homeButton.setHorizontalAlignment(SwingConstants.CENTER);
+		homePanel.add(homeButton, BorderLayout.CENTER);
+		homeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				theHouse.start();
+				setVisible(false);
+			}
+		});
 		
 		//generate background
 //		ImageIcon image = new ImageIcon("background/background.jpg");

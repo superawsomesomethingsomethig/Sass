@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,34 +22,137 @@ public class House implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Room> roomList;
+	private int level;
+	private Room currentRoom;
+	private Appliance currentAppliance;
+	private Room_UI roomUI;
+	private Appliance_UI applianceUI;
+	private Document_UI documentUI;
 	
-	public House() {
+	
+	
+	public House() 
+	{
+		roomUI = null;
+		applianceUI = null;
+		documentUI = null;
+		currentRoom = null;
+		currentAppliance = null;
 		roomList = new LinkedList<Room>();
+		level = 0;
 	}
-	public List<Room> getList() {
+	public void start()
+	{
+		
+		roomUI = new Room_UI(roomList,this);
+	}
+	public void generateUI(Object newObject)
+	{
+		if(level == 0)
+		{
+			level = 1;
+			currentRoom = (Room) newObject;
+			applianceUI = new Appliance_UI(currentRoom,this);
+			roomUI.setVisible(false);
+		}
+		else if(level == 1)
+		{
+			level = 2;
+			//currentAppliance = newObject;
+			//documentUI = new Document_UI(currentAppliance,this);
+			applianceUI.setVisible(false);
+		}
+	}
+	public void back()
+	{
+		if(level == 2)
+		{
+			level = 1;
+			//new Appliance_UI(currentRoom,this);
+			applianceUI.setVisible(true);
+			documentUI.setVisible(false);
+		}
+		if(level == 1)
+		{
+			level = 0;
+			//new Room_UI(roomList,this);
+			roomUI.setVisible(true);
+			applianceUI.setVisible(false);
+		}
+	}
+	public List<Room> getList() 
+	{
+		System.out.println("room list: " + roomList);
 		return new LinkedList<Room>(roomList);  // List is copied to avoid editing errors
 	}
-	public Room create(String roomName) {
+	public Room create(String roomName) 
+	{
 		Room room = new Room(roomName);
 		roomList.add(room);
+		getList();
+		try {
+			House.saveHouse(this, "houseFile.hf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return room;
 	}
-	public void create(Room room) {
+	public void create(Room room) 
+	{
 		roomList.add(room);
 	}
-	public void destroy(Room room) {
-		roomList.remove(room);
+	public void destroy(String name) 
+	{
+		int index = 0;
+		boolean removed = false;
+		for(Iterator<Room> listIterator = roomList.iterator(); listIterator.hasNext();)
+		{
+			Room temp = listIterator.next();
+			//4System.out.println(temp.getName() + ',' + name);
+			if(temp.getName().equals(name))
+			{
+				removed = true;
+				roomList.remove(index);
+				//System.out.println(temp.getName() + ',' + name);
+				break;
+			}
+			index++;
+		}
+		if(!removed)
+		{
+			System.out.println("Room does not exist");
+		}
+		try {
+			House.saveHouse(this, "houseFile.hf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	public String toString() {
-		String output = "House[ ";
-		for (int i = 0; i < roomList.size(); i++) {
-			output += roomList.get(i).toString();
-			if (i < roomList.size() - 1) {  // Fencepost check
-				output += ", ";
+	public Room getRoom(String name)
+	{				
+		for(Iterator<Room> listIterator = roomList.iterator(); listIterator.hasNext();)
+		{
+			Room temp = listIterator.next();
+			if(temp.getName() .equals(name))
+			{
+				return temp;
 			}
 		}
-		return output + " ]";
+		return null;
+		
 	}
+//	public String toString() 
+//	{
+//		String output = "House[ ";
+//		for (int i = 0; i < roomList.size(); i++) {
+//			output += roomList.get(i).toString();
+//			if (i < roomList.size() - 1) {  // Fencepost check
+//				output += ", ";
+//			}
+//		}
+//		return output + " ]";
+//	}
 	
 	public static void saveHouse(House house, String fileName) throws IOException {
 		FileOutputStream fout = new FileOutputStream(fileName);
