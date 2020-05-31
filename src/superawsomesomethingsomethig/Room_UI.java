@@ -29,7 +29,7 @@ import javax.swing.event.DocumentListener;
 
 import superawsomesomethingsomethig.Room;
 
-//@Ella
+//author: @Ella
 public class Room_UI extends JFrame
 {
 	private final JTextField addRoomName;
@@ -38,7 +38,6 @@ public class Room_UI extends JFrame
 	private String newRoomName;
 	private House myHouse;
 	private JPanel buttonPanel;
-	private boolean isDelete;
 	
 
 		//constructor
@@ -48,7 +47,6 @@ public class Room_UI extends JFrame
 			roomPanel = new JPanel();
 			buttonPanel = new JPanel();
 			myHouse = house;
-			isDelete = false;
 			myRoomList = roomList;
 			addRoomName = new JTextField("New Room Name: ");
 			start();	
@@ -135,6 +133,7 @@ public class Room_UI extends JFrame
 				public void actionPerformed(ActionEvent e) {
 					System.out.println(name);
 					myHouse.generateUI(myHouse.getRoom(name));
+					//setVisible(false);
 				}
 			});
 	        
