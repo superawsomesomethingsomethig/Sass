@@ -131,7 +131,8 @@ public class Room_UI extends JFrame
 	        roomButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println(name);
+					Room tempRoom = myHouse.getRoom(name);
+					System.out.println(tempRoom.getName());
 					myHouse.generateUI(myHouse.getRoom(name));
 					//setVisible(false);
 				}
