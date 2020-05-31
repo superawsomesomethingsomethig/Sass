@@ -31,6 +31,7 @@ public class Appliance_UI extends JFrame{
 	private Room myRoom;
 	private Room myApplianceList;
 	private House myHouse;
+	private JPanel backPanel;
 
 	//constructor
 			public Appliance_UI(Room currentRoom, House house)
@@ -38,6 +39,7 @@ public class Appliance_UI extends JFrame{
 				super("Appliances");
 				appliancePanel = new JPanel();
 				buttonPanel = new JPanel();
+				backPanel = new JPanel();
 				myRoom = currentRoom;
 				myHouse = house;
 				//myApplianceList = currentRoom;
@@ -52,6 +54,7 @@ public class Appliance_UI extends JFrame{
 				setVisible(true);
 				setUpFrame();
 				setUpAppliancePanel();
+				setUpBackPanel();
 		        pack();
 		        setLocationRelativeTo(null);
 				//startButtons();     
@@ -64,8 +67,19 @@ public class Appliance_UI extends JFrame{
 				appliancePanel.setBackground(Color.WHITE);
 				add(appliancePanel, BorderLayout.NORTH);
 				add(buttonPanel, BorderLayout.CENTER);
+				add(backPanel, BorderLayout.SOUTH);
 		        repaint();
 				revalidate();
+			}
+			private void setUpBackPanel() {
+				JButton backButton = new JButton("back");
+				backButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						myHouse.back();
+					}
+				});
+				backPanel.add(backButton);
 			}
 			
 			private void setUpAppliancePanel()
