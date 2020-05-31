@@ -52,6 +52,7 @@ public class Room_UI extends JFrame
 			myRoomList = roomList;
 			addRoomName = new JTextField("New Room Name: ");
 			start();	
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 		private void start() 
@@ -115,9 +116,10 @@ public class Room_UI extends JFrame
 		
 		private void deleteRoom() {
 			String deleteRoomName = JOptionPane.showInputDialog( null, "Enter name of room to be deleted: ", "Delete Room", JOptionPane.PLAIN_MESSAGE);
-			//Room delete = myHouse.getRoom(deleteRoomName);
-			myHouse.destroy(deleteRoomName);
-			//isDelete = true;
+			myHouse.destroy(deleteRoomName);			
+			startButtons();
+			repaint();
+			revalidate();
 		}
 		
 		private void newButton(String name) {
@@ -140,8 +142,11 @@ public class Room_UI extends JFrame
 			repaint();
 			revalidate();
 		}
+		
+		
 		private void startButtons()
 		{
+			buttonPanel.removeAll();
 			for(Iterator<Room> listIterator = myRoomList.iterator(); listIterator.hasNext();)
 			{
 				Room temp = listIterator.next();
