@@ -89,9 +89,27 @@ public class House implements Serializable
 	{
 		roomList.add(room);
 	}
-	public void destroy(Room room) 
+	public void destroy(String name) 
 	{
-		roomList.remove(room);
+		int index = 0;
+		boolean removed = false;
+		for(Iterator<Room> listIterator = roomList.iterator(); listIterator.hasNext();)
+		{
+			Room temp = listIterator.next();
+			System.out.println(temp.getName() + ',' + name);
+			if(temp.getName().equals(name))
+			{
+				removed = true;
+				roomList.remove(index);
+				System.out.println(temp.getName() + ',' + name);
+				break;
+			}
+			index++;
+		}
+		if(!removed)
+		{
+			System.out.println("Room does not exist");
+		}
 		try {
 			House.saveHouse(this, "houseFile.hf");
 		} catch (IOException e) {
@@ -99,7 +117,7 @@ public class House implements Serializable
 		}
 	}
 	public Room getRoom(String name)
-	{
+	{				
 		for(Iterator<Room> listIterator = roomList.iterator(); listIterator.hasNext();)
 		{
 			Room temp = listIterator.next();

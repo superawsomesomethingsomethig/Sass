@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,7 +34,7 @@ public class Room_UI extends JFrame
 {
 	private final JTextField addRoomName;
 	private JPanel roomPanel;
-	private List<Room> roomList;
+	private List<Room> myRoomList;
 	private String newRoomName;
 	private House myHouse;
 	private JPanel buttonPanel;
@@ -48,7 +49,7 @@ public class Room_UI extends JFrame
 			buttonPanel = new JPanel();
 			myHouse = house;
 			isDelete = false;
-			roomList = this.roomList;
+			myRoomList = roomList;
 			addRoomName = new JTextField("New Room Name: ");
 			start();	
 		
@@ -60,6 +61,7 @@ public class Room_UI extends JFrame
 			setUpRoomPanel();
 	        pack();
 	        setLocationRelativeTo(null);
+			startButtons();
 	        
 
 		}
@@ -113,8 +115,8 @@ public class Room_UI extends JFrame
 		
 		private void deleteRoom() {
 			String deleteRoomName = JOptionPane.showInputDialog( null, "Enter name of room to be deleted: ", "Delete Room", JOptionPane.PLAIN_MESSAGE);
-			Room delete = myHouse.getRoom(deleteRoomName);
-			myHouse.destroy(delete);
+			//Room delete = myHouse.getRoom(deleteRoomName);
+			myHouse.destroy(deleteRoomName);
 			//isDelete = true;
 		}
 		
@@ -129,7 +131,7 @@ public class Room_UI extends JFrame
 	        roomButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//System.out.println(name);
+					System.out.println(name);
 					myHouse.generateUI(myHouse.getRoom(name));
 				}
 			});
@@ -138,7 +140,14 @@ public class Room_UI extends JFrame
 			repaint();
 			revalidate();
 		}
-		
+		private void startButtons()
+		{
+			for(Iterator<Room> listIterator = myRoomList.iterator(); listIterator.hasNext();)
+			{
+				Room temp = listIterator.next();
+				newButton(temp.getName());
+			}
+		}
 		
 		
 }
