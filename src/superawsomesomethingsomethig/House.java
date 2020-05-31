@@ -40,14 +40,14 @@ public class House implements Serializable
 		if(level == 0)
 		{
 			level = 1;
-			currentRoom = newObject;
-			new Appliance_UI(currentRoom,this);
+			currentRoom = (Room) newObject;
+			//new Appliance_UI(currentRoom,this);
 		}
 		else if(level == 1)
 		{
 			level = 2;
-			currentAppliance = newObject;
-			new Document_UI(currentAppliance,this);
+			//currentAppliance = newObject;
+			//new Document_UI(currentAppliance,this);
 		}
 	}
 	public void back()
@@ -55,7 +55,7 @@ public class House implements Serializable
 		if(level == 2)
 		{
 			level = 1;
-			new Appliance_UI(currentRoom,this);
+			//new Appliance_UI(currentRoom,this);
 		}
 		if(level == 1)
 		{
@@ -65,12 +65,14 @@ public class House implements Serializable
 	}
 	public List<Room> getList() 
 	{
+		System.out.println("room list: " + roomList);
 		return new LinkedList<Room>(roomList);  // List is copied to avoid editing errors
 	}
 	public Room create(String roomName) 
 	{
 		Room room = new Room(roomName);
 		roomList.add(room);
+		getList();
 		return room;
 	}
 	public void create(Room room) 
@@ -81,17 +83,17 @@ public class House implements Serializable
 	{
 		roomList.remove(room);
 	}
-	public String toString() 
-	{
-		String output = "House[ ";
-		for (int i = 0; i < roomList.size(); i++) {
-			output += roomList.get(i).toString();
-			if (i < roomList.size() - 1) {  // Fencepost check
-				output += ", ";
-			}
-		}
-		return output + " ]";
-	}
+//	public String toString() 
+//	{
+//		String output = "House[ ";
+//		for (int i = 0; i < roomList.size(); i++) {
+//			output += roomList.get(i).toString();
+//			if (i < roomList.size() - 1) {  // Fencepost check
+//				output += ", ";
+//			}
+//		}
+//		return output + " ]";
+//	}
 	
 	public static void saveHouse(House house, String fileName) throws IOException {
 		FileOutputStream fout = new FileOutputStream(fileName);
