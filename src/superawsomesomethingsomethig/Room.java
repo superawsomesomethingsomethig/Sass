@@ -24,6 +24,7 @@ public class Room implements Serializable
 	public Appliance create(String applianceName) {
 		Appliance appliance = new Appliance(applianceName);
 		applianceList.add(appliance);
+		System.out.println(applianceList);
 		return appliance;
 	}
 	public void create(Appliance appliance) {
