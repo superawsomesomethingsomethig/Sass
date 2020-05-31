@@ -25,11 +25,17 @@ public class House implements Serializable
 	private int level;
 	private Room currentRoom;
 	private Appliance currentAppliance;
+	private Room_UI roomUI;
+	private Appliance_UI applianceUI;
+	private Document_UI documentUI;
 	
 	
 	
 	public House() 
 	{
+		roomUI = null;
+		applianceUI = null;
+		documentUI = null;
 		currentRoom = null;
 		currentAppliance = null;
 		roomList = new LinkedList<Room>();
@@ -37,7 +43,8 @@ public class House implements Serializable
 	}
 	public void start()
 	{
-		new Room_UI(roomList,this);
+		
+		roomUI = new Room_UI(roomList,this);
 	}
 	public void generateUI(Object newObject)
 	{
@@ -45,13 +52,15 @@ public class House implements Serializable
 		{
 			level = 1;
 			currentRoom = (Room) newObject;
-			//new Appliance_UI(currentRoom,this);
+			//applianceUI = new Appliance_UI(currentRoom,this);
+			roomUI.setVisible(false);
 		}
 		else if(level == 1)
 		{
 			level = 2;
 			//currentAppliance = newObject;
-			//new Document_UI(currentAppliance,this);
+			//documentUI = new Document_UI(currentAppliance,this);
+			applianceUI.setVisible(false);
 		}
 	}
 	public void back()
@@ -60,11 +69,15 @@ public class House implements Serializable
 		{
 			level = 1;
 			//new Appliance_UI(currentRoom,this);
+			applianceUI.setVisible(true);
+			documentUI.setVisible(false);
 		}
 		if(level == 1)
 		{
 			level = 0;
-			new Room_UI(roomList,this);
+			//new Room_UI(roomList,this);
+			roomUI.setVisible(true);
+			applianceUI.setVisible(false);
 		}
 	}
 	public List<Room> getList() 

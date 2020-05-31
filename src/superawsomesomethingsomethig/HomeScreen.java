@@ -69,10 +69,6 @@ public class HomeScreen extends JFrame
 		setPreferredSize(new Dimension(800, 500));
 		add(homePanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
-		
-
-		
-		
 	}
 	//author 1: @Timmy
 	//author 2: @Ella
