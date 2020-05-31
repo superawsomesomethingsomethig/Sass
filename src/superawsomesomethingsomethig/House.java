@@ -134,8 +134,10 @@ public class House implements Serializable
 		for(Iterator<Room> listIterator = roomList.iterator(); listIterator.hasNext();)
 		{
 			Room temp = listIterator.next();
-			if(temp.getName() == name);
-			return temp;
+			if(temp.getName() .equals(name))
+			{
+				return temp;
+			}
 		}
 		return null;
 		
