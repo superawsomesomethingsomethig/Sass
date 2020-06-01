@@ -127,17 +127,18 @@ public class Appliance_UI extends JFrame{
 			
 			private void deleteAppliance() {
 				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
-				myRoom.destroy(deleteApplianceName);			
+				myRoom.destroy(deleteApplianceName);	
+				myApplianceList = myRoom.getList();
 				startButtons();
 				repaint();
 				revalidate();
-				try {
-					House.saveHouse(myHouse, "houseFile.hf");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				repaint();
-				revalidate();
+				//try {
+				//	House.saveHouse(myHouse, "houseFile.hf");
+				//} catch (IOException e) {
+				//	e.printStackTrace();
+				//}
+				//repaint();
+				//revalidate();
 			}
 			
 			private void newButton(String name) {
@@ -166,7 +167,9 @@ public class Appliance_UI extends JFrame{
 				buttonPanel.removeAll();
 				for(Iterator<Appliance> listIterator = myApplianceList.iterator(); listIterator.hasNext();)
 				{
+					
 					Appliance temp = listIterator.next();
+					System.out.println(temp.getName());
 					newButton(temp.getName());
 				}
 			}
