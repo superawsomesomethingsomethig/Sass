@@ -33,6 +33,19 @@ public class Room implements Serializable
 	public void destroy(Appliance appliance) {
 		applianceList.remove(appliance);
 	}
+	public void destroy(String name) {
+		Appliance docToDestroy = null;
+		for (int i = 0; i < applianceList.size(); i++) {
+			if (applianceList.get(i).getName() == name) {
+				docToDestroy = applianceList.get(i);
+			}
+		}
+		if (docToDestroy == null) {
+			// TODO: Error. Doc not found
+		} else {
+			destroy(docToDestroy);
+		}
+	}
 	public String getName() {
 		System.out.println(name);
 		return name;
