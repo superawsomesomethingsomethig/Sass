@@ -45,7 +45,7 @@ public class House implements Serializable
 	}
 	public void start()
 	{
-		
+		level = 0;
 		roomUI = new Room_UI(roomList,this);
 	}
 	public void generateUI(Object newObject)
