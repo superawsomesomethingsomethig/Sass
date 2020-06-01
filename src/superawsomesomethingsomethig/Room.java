@@ -81,6 +81,21 @@ public class Room implements Serializable
 		System.out.println(name);
 		return name;
 	}
+	
+	public Appliance getAppliance(String name)
+	{				
+		for(Iterator<Appliance> listIterator = applianceList.iterator(); listIterator.hasNext();)
+		{
+			Appliance temp = listIterator.next();
+			if(temp.getName() .equals(name))
+			{
+				return temp;
+			}
+		}
+		return null;
+		
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
