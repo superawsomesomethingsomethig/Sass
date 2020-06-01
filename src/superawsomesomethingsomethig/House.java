@@ -16,6 +16,7 @@ import java.util.List;
 
 public class House implements Serializable
 {
+	public static final String DEFAULT_FILENAME = "houseFile.hf";
 
 	/**
 	 * Default Serial UID for House
@@ -28,7 +29,7 @@ public class House implements Serializable
 	private Room_UI roomUI;
 	private Appliance_UI applianceUI;
 	private Document_UI documentUI;
-	
+	private String filename;
 	
 	
 	public House() 
@@ -40,6 +41,7 @@ public class House implements Serializable
 		currentAppliance = null;
 		roomList = new LinkedList<Room>();
 		level = 0;
+		filename = DEFAULT_FILENAME;
 	}
 	public void start()
 	{
@@ -91,7 +93,7 @@ public class House implements Serializable
 		roomList.add(room);
 		getList();
 		try {
-			House.saveHouse(this, "houseFile.hf");
+			House.saveHouse(this, filename);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -124,7 +126,7 @@ public class House implements Serializable
 			System.out.println("Room does not exist");
 		}
 		try {
-			House.saveHouse(this, "houseFile.hf");
+			House.saveHouse(this, filename);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -141,6 +143,10 @@ public class House implements Serializable
 		}
 		return null;
 		
+	}
+	
+	public String getFilename() {
+		return filename;
 	}
 //	public String toString() 
 //	{
