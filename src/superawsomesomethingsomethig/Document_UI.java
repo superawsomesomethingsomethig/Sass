@@ -1,87 +1,175 @@
+
 package superawsomesomethingsomethig;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class Document_UI extends JPanel implements Runnable, MouseListener
-{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+//author: @Ella
+public class Document_UI extends JFrame{
 	
-	JFrame theFrame;
-	Thread thread;
-	Document theDocument;
-	
-	public Document_UI()
-	{
-		theDocument = new Document("Test");
-		theFrame = new JFrame();
-		thread = new Thread(this);
-		thread.start();
+	private JPanel documentPanel;
+	private JPanel buttonPanel;
+	private JTextField addDocumenteName;
+	private Appliance myAppliance;
+	private List<Document> myDocumentList;
+	private House myHouse;
+	private JPanel backPanel;
 
-	}
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 700, 500);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) 
-	{
-		
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) 
-	{
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) 
-	{
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) 
-	{
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) 
-	{
-	
-	}
-
-	@Override
-	public void run() 
-	{
-		setUp();
-		while(true)
-		{
+	//constructor
+			public Document_UI(Appliance currentAppliance, House house)
+			{
+				super("Documents");
+				documentPanel = new JPanel();
+				buttonPanel = new JPanel();
+				backPanel = new JPanel();
+				myAppliance = currentAppliance;
+				myHouse = house;
+				//myDocumentList = currentDocument.getList();
+				addDocumenteName = new JTextField("New Appliance Name: ");
+				start();	
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 		}
-	}
-	public void setUp()
-	{
-		theFrame.add(this);
-		theFrame.setBounds(0, 0, 700, 500);
-	    theFrame.setVisible(true);
-	    theFrame.setTitle("Tennis");
-	    theFrame.setResizable(false);
-	    theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+			
+			private void start() 
+			{
+				setVisible(true);
+				setUpFrame();
+				setUpDocumentPanel();
+				setUpBackPanel();
+		        pack();
+		        setLocationRelativeTo(null);
+				startButtons();     
+
+			}
+			
+			private void setUpFrame()
+			{
+				setPreferredSize(new Dimension(800, 500));
+				documentPanel.setBackground(Color.WHITE);
+				add(documentPanel, BorderLayout.NORTH);
+				add(buttonPanel, BorderLayout.CENTER);
+				add(backPanel, BorderLayout.SOUTH);
+		        repaint();
+				revalidate();
+			}
+			private void setUpBackPanel() {
+				JButton backButton = new JButton("back");
+				backButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						myHouse.back();
+					}
+				});
+				backPanel.add(backButton);
+			}
+			
+			private void setUpDocumentPanel()
+			{
+				JLabel documents = new JLabel(myAppliance.getName().toUpperCase() + "'S Document List: " );
+				documents.setBackground(Color.WHITE);
+			    documents.setFont((new Font("Chalkboard", Font.BOLD, 28)));
+				documentPanel.add(documents);
+				JButton addDocument = new JButton("Add Document");
+				
+				addDocument.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						newDocument();
+					}
+				});
+				
+				JButton removeDocument = new JButton("Remove Document");
+				removeDocument.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						deleteDocument();
+					}
+				});
+				documentPanel.add(addDocument);
+				documentPanel.add(removeDocument);
+				pack();
+			}
+			
+			private void newDocument() {
+//				String addApplianceName = JOptionPane.showInputDialog( null, "Enter name for new appliance: ", "New Appliance Name", JOptionPane.PLAIN_MESSAGE);
+//				myAppliance.create(addDocumenteName);
+//				newButton(addApplianceName);
+//				repaint();
+//				revalidate();
+				try {
+					House.saveHouse(myHouse, "houseFile.hf");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				repaint();
+				revalidate();
+			}
+			
+			private void deleteDocument() {
+//				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
+//				myDocument.destroy(deleteApplianceName);			
+//				startButtons();
+//				repaint();
+//				revalidate();
+				try {
+					House.saveHouse(myHouse, "houseFile.hf");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				repaint();
+				revalidate();
+			}
+			
+			private void newButton(String name) {
+
+				JButton documentButton = new JButton(name);
+				buttonPanel.add(documentButton);
+				BoxLayout boxLayout1 = new BoxLayout(buttonPanel, BoxLayout.Y_AXIS);
+				buttonPanel.setLayout(boxLayout1);
+				documentButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		        documentButton.setFocusable(false);
+		        documentButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println(name);
+						//myHouse.generateUI(myHouse.getRoom(name));
+					}
+				});
+		        
+		        pack();
+				repaint();
+				revalidate();
+			}
+			
+			private void startButtons()
+			{
+				buttonPanel.removeAll();
+				for(Iterator<Document> listIterator = myDocumentList.iterator(); listIterator.hasNext();)
+				{
+					Document temp = listIterator.next();
+					newButton(temp.getName());
+				}
+			}
+			
+			
 }

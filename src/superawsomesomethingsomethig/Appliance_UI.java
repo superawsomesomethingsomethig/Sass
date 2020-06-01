@@ -152,7 +152,7 @@ public class Appliance_UI extends JFrame{
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						System.out.println(name);
-						//myHouse.generateUI(myHouse.getRoom(name));
+						myHouse.generateUI(myRoom.getAppliance(name));
 					}
 				});
 		        
