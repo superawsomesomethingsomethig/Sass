@@ -35,7 +35,7 @@ public class Appliance implements Serializable
 	public void destroy(String name) {
 		Document docToDestroy = null;
 		for (int i = 0; i < documentList.size(); i++) {
-			if (documentList.get(i).getName() == name) {
+			if (documentList.get(i).getName().equals(name)) {
 				docToDestroy = documentList.get(i);
 			}
 		}

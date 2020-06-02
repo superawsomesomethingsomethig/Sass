@@ -45,7 +45,7 @@ public class House implements Serializable
 	}
 	public void start()
 	{
-		
+		level = 0;
 		roomUI = new Room_UI(roomList,this);
 	}
 	public void generateUI(Object newObject)
@@ -60,8 +60,8 @@ public class House implements Serializable
 		else if(level == 1)
 		{
 			level = 2;
-			//currentAppliance = newObject;
-			//documentUI = new Document_UI(currentAppliance,this);
+			currentAppliance = (Appliance) newObject;
+			documentUI = new Document_UI(currentAppliance,this);
 			applianceUI.setVisible(false);
 		}
 	}

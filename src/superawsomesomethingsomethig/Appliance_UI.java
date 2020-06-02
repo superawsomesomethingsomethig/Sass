@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Appliance_UI extends JFrame{
 	private JPanel buttonPanel;
 	private JTextField addApplianceName;
 	private Room myRoom;
-	private Room myApplianceList;
+	private List<Appliance> myApplianceList;
 	private House myHouse;
 	private JPanel backPanel;
 
@@ -42,7 +43,7 @@ public class Appliance_UI extends JFrame{
 				backPanel = new JPanel();
 				myRoom = currentRoom;
 				myHouse = house;
-				//myApplianceList = currentRoom;
+				myApplianceList = currentRoom.getList();
 				addApplianceName = new JTextField("New Appliance Name: ");
 				start();	
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +58,7 @@ public class Appliance_UI extends JFrame{
 				setUpBackPanel();
 		        pack();
 		        setLocationRelativeTo(null);
-				//startButtons();     
+				startButtons();     
 
 			}
 			
@@ -115,14 +116,29 @@ public class Appliance_UI extends JFrame{
 				newButton(addApplianceName);
 				repaint();
 				revalidate();
+				try {
+					House.saveHouse(myHouse, "houseFile.hf");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				repaint();
+				revalidate();
 			}
 			
 			private void deleteAppliance() {
 				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
-				//myRoom.destroy(deleteApplianceName);			
-				//startButtons();
+				myRoom.destroy(deleteApplianceName);	
+				myApplianceList = myRoom.getList();
+				startButtons();
 				repaint();
 				revalidate();
+				//try {
+				//	House.saveHouse(myHouse, "houseFile.hf");
+				//} catch (IOException e) {
+				//	e.printStackTrace();
+				//}
+				//repaint();
+				//revalidate();
 			}
 			
 			private void newButton(String name) {
@@ -137,7 +153,7 @@ public class Appliance_UI extends JFrame{
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						System.out.println(name);
-						//myHouse.generateUI(myHouse.getRoom(name));
+						myHouse.generateUI(myRoom.getAppliance(name));
 					}
 				});
 		        
@@ -146,15 +162,17 @@ public class Appliance_UI extends JFrame{
 				revalidate();
 			}
 			
-//			private void startButtons()
-//			{
-//				buttonPanel.removeAll();
-//				for(Iterator<Room> listIterator = myApplianceList.iterator(); listIterator.hasNext();)
-//				{
-//					Room temp = listIterator.next();
-//					newButton(temp.getName());
-//				}
-//			}
+			private void startButtons()
+			{
+				buttonPanel.removeAll();
+				for(Iterator<Appliance> listIterator = myApplianceList.iterator(); listIterator.hasNext();)
+				{
+					
+					Appliance temp = listIterator.next();
+					System.out.println(temp.getName());
+					newButton(temp.getName());
+				}
+			}
 			
 			
 }
