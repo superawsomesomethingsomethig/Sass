@@ -1,6 +1,12 @@
 package superawsomesomethingsomethig;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.io.File;
 import java.io.Serializable;
+
+import javax.swing.JPanel;
+
 
 public class Document implements Serializable
 {
@@ -9,10 +15,12 @@ public class Document implements Serializable
 	 */
 	private static final long serialVersionUID = 4L;
 	private String name;
+	private File file;
 	
-	public Document(String name)
+	public Document(String name, File file)
 	{
 		this.name = name;
+		this.file = file;
 	}
 	public String getName() {
 		return name;
@@ -22,5 +30,13 @@ public class Document implements Serializable
 	}
 	public String toString() {
 		return "Document(\"" + name + "\")";
+	}
+	public JPanel displayFile() {
+		JPanel output = new JPanel();
+		output.setLayout(new BorderLayout());
+		
+		// TODO: This
+		
+		return null;
 	}
 }

@@ -22,7 +22,7 @@ public class Appliance implements Serializable
 		return new LinkedList<Document>(documentList);  // List is copied to avoid editing errors
 	}
 	public Document create(String documentName) {
-		Document document = new Document(documentName);
+		Document document = new Document(documentName, null);
 		documentList.add(document);
 		return document;
 	}
