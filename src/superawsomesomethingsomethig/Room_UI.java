@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -70,6 +71,7 @@ public class Room_UI extends JFrame
 		{
 			setPreferredSize(new Dimension(800, 500));
 			roomPanel.setBackground(Color.WHITE);
+			buttonPanel.setBackground(Color.WHITE);
 			add(roomPanel, BorderLayout.NORTH);
 			add(buttonPanel, BorderLayout.CENTER);
 	        repaint();
