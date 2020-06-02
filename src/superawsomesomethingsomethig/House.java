@@ -124,6 +124,7 @@ public class House implements Serializable
 		if(!removed)
 		{
 			System.out.println("Room does not exist");
+			Room_UI.errorMessage();
 		}
 		try {
 			House.saveHouse(this, filename);

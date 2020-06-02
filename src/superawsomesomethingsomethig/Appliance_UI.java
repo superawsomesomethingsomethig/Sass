@@ -124,7 +124,12 @@ public class Appliance_UI extends JFrame{
 			}
 			
 			private void newAppliance() {
+				boolean isEmpty = false;
 				String addApplianceName = JOptionPane.showInputDialog( null, "Enter name for new appliance: ", "New Appliance Name", JOptionPane.PLAIN_MESSAGE);
+				if (addApplianceName.isEmpty()) {
+					isEmpty = true;
+				}
+				if (addApplianceName != null && isEmpty == false) {
 				myRoom.create(addApplianceName);
 				newButton(addApplianceName);
 				repaint();
@@ -136,6 +141,7 @@ public class Appliance_UI extends JFrame{
 				}
 				repaint();
 				revalidate();
+				}
 			}
 			
 			private void deleteAppliance() {
@@ -186,6 +192,11 @@ public class Appliance_UI extends JFrame{
 					newButton(temp.getName());
 				}
 			}
+			
+			 static void errorMessage() {
+					String errorMessage = "The appliance you tried to remove does not exist";
+					JOptionPane.showMessageDialog(null, errorMessage, "ERROR!", JOptionPane.PLAIN_MESSAGE);
+				}
 			
 			
 }
