@@ -107,11 +107,18 @@ public class Room_UI extends JFrame
 		}
 		
 		private void newRoom() {
+			boolean isEmpty = false;
 			String addRoomName = JOptionPane.showInputDialog( null, "Enter name for new room: ", "New Room Name", JOptionPane.PLAIN_MESSAGE);
+			if (addRoomName.isEmpty()) {
+				isEmpty = true;
+			}
+			if (addRoomName != null && isEmpty == false) {
+			
 			myHouse.create(addRoomName);
 			newButton(addRoomName);
 			repaint();
 			revalidate();
+			}
 		}
 		
 		private void deleteRoom() {
@@ -154,6 +161,11 @@ public class Room_UI extends JFrame
 				Room temp = listIterator.next();
 				newButton(temp.getName());
 			}
+		}
+		
+	   static void errorMessage() {
+			String errorMessage = "The room you tried to remove does not exist";
+			JOptionPane.showMessageDialog(null, errorMessage, "ERROR!", JOptionPane.PLAIN_MESSAGE);
 		}
 		
 		

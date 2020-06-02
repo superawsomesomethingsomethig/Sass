@@ -57,6 +57,7 @@ public class Room implements Serializable
 		if(!removed)
 		{
 			System.out.println("Room does not exist");
+			Appliance_UI.errorMessage();
 		}
 	}
 	
