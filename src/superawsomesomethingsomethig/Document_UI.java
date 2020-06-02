@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 //author: @Ella
 public class Document_UI extends JFrame{
@@ -66,6 +68,7 @@ public class Document_UI extends JFrame{
 			{
 				setPreferredSize(new Dimension(800, 500));
 				documentPanel.setBackground(Color.WHITE);
+				buttonPanel.setBackground(Color.WHITE);
 				add(documentPanel, BorderLayout.NORTH);
 				add(buttonPanel, BorderLayout.CENTER);
 				add(backPanel, BorderLayout.SOUTH);

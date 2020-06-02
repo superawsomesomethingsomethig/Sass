@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,6 +34,7 @@ public class Appliance_UI extends JFrame{
 	private List<Appliance> myApplianceList;
 	private House myHouse;
 	private JPanel backPanel;
+	private String helpMessage;
 
 	//constructor
 			public Appliance_UI(Room currentRoom, House house)
@@ -66,6 +68,7 @@ public class Appliance_UI extends JFrame{
 			{
 				setPreferredSize(new Dimension(800, 500));
 				appliancePanel.setBackground(Color.WHITE);
+				buttonPanel.setBackground(Color.WHITE);
 				add(appliancePanel, BorderLayout.NORTH);
 				add(buttonPanel, BorderLayout.CENTER);
 				add(backPanel, BorderLayout.SOUTH);
@@ -74,13 +77,23 @@ public class Appliance_UI extends JFrame{
 			}
 			private void setUpBackPanel() {
 				JButton backButton = new JButton("back");
+				JButton helpButton = new JButton("help");
+				helpMessage = "havent we helped you enough Bob";
 				backButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						myHouse.back();
 					}
 				});
+				
+				helpButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null, helpMessage, "help", JOptionPane.PLAIN_MESSAGE);
+					}
+				});
 				backPanel.add(backButton);
+				backPanel.add(helpButton);
 			}
 			
 			private void setUpAppliancePanel()
