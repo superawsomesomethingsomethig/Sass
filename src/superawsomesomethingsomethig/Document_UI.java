@@ -4,6 +4,7 @@ package superawsomesomethingsomethig;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -45,6 +46,7 @@ public class Document_UI extends JFrame implements Serializable{
 	private JPanel backPanel;
 	private String helpMessage;
 	private boolean isEmpty;
+	private Desktop myDesktop;
 
 	//constructor
 			public Document_UI(Appliance currentAppliance, House house)
@@ -135,20 +137,22 @@ public class Document_UI extends JFrame implements Serializable{
 			}
 			
 			private void newDocument() {
+				isEmpty = false;
 				String newDocumentName = JOptionPane.showInputDialog( null, "Enter name for new document: ", "New Document Name", JOptionPane.PLAIN_MESSAGE);
 				if (newDocumentName != null) {
 					if (newDocumentName.isEmpty()) {
 						isEmpty = true;
 					}
 					if (newDocumentName != null && isEmpty == false) {
-				JFileChooser myChooser = new JFileChooser(".");
-		        int check =  myChooser.showOpenDialog(null);
+						JFileChooser myChooser = new JFileChooser(".");
+						int check =  myChooser.showOpenDialog(null);
 		        File newFile = null;
 		        if (check == JFileChooser.APPROVE_OPTION)
 		        {
 		            newFile = myChooser.getSelectedFile();
 		        } 
 		        myAppliance.create(newDocumentName, newFile);
+		        newButton(newDocumentName);
 					}
 				try {
 					House.saveHouse(myHouse, "houseFile.hf");
@@ -188,7 +192,14 @@ public class Document_UI extends JFrame implements Serializable{
 		        documentButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						myHouse.generateUI(myAppliance.getDocument(name));
+						myDesktop = Desktop.getDesktop();
+						try {
+							myDesktop.open(myAppliance.getDocument(name).getFile());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						myDesktop = null;
 					}
 				});
 		        
