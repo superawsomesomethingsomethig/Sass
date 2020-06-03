@@ -115,15 +115,23 @@ public class Room_UI extends JFrame
 		private void newRoom() {
 			boolean isEmpty = false;
 			String addRoomName = JOptionPane.showInputDialog( null, "Enter name for new room: ", "New Room Name", JOptionPane.PLAIN_MESSAGE);
-			if (addRoomName.isEmpty()) {
-				isEmpty = true;
-			}
-			if (addRoomName != null && isEmpty == false) {
-			
-			myHouse.create(addRoomName);
-			newButton(addRoomName);
-			repaint();
-			revalidate();
+			if (addRoomName != null) {
+
+
+				if (addRoomName.isEmpty()) {
+					isEmpty = true;
+				}
+				if (addRoomName != null && isEmpty == false) {
+
+					myHouse.create(addRoomName);
+					newButton(addRoomName);
+					repaint();
+					revalidate();
+					
+					if (addRoomName.equals("Carole Baskins")) {
+						easterEgg();
+					}
+				}
 			}
 		}
 		
@@ -196,6 +204,10 @@ public class Room_UI extends JFrame
 			});
 			backPanel.add(backButton);
 			backPanel.add(helpButton);
+	   }
+	   
+	   private void easterEgg() {
+		   JOptionPane.showMessageDialog(null, "killed her husband", "Carole Baskins", JOptionPane.PLAIN_MESSAGE);
 	   }
 		
 		
