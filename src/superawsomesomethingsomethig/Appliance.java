@@ -1,6 +1,8 @@
 package superawsomesomethingsomethig;
 
+import java.io.File;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,10 +23,9 @@ public class Appliance implements Serializable
 	public List<Document> getList() {
 		return new LinkedList<Document>(documentList);  // List is copied to avoid editing errors
 	}
-	public Document create(String documentName) {
-		Document document = new Document(documentName, null);
+	public void create(String documentName,File newFile) {
+		Document document = new Document(documentName, newFile);
 		documentList.add(document);
-		return document;
 	}
 	public void create(Document document) {
 		documentList.add(document);
@@ -60,5 +61,18 @@ public class Appliance implements Serializable
 			}
 		}
 		return output + " ]";
+	}
+	public Document getDocument(String name)
+	{				
+		for(Iterator<Document> listIterator = documentList.iterator(); listIterator.hasNext();)
+		{
+			Document temp = listIterator.next();
+			if(temp.getName() .equals(name))
+			{
+				return temp;
+			}
+		}
+		return null;
+		
 	}
 }

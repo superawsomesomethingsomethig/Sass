@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.Serializable;
 
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 
