@@ -1,5 +1,9 @@
 package superawsomesomethingsomethig;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,6 +13,10 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 // @Timmy: I removed the main method that was here, since we already have one in AppMain.java.
 // 		I also added some stuff to let this thing load and save
@@ -26,9 +34,11 @@ public class House implements Serializable
 	private int level;
 	private Room currentRoom;
 	private Appliance currentAppliance;
+	private Document currentDocument;
 	private Room_UI roomUI;
 	private Appliance_UI applianceUI;
 	private Document_UI documentUI;
+	private transient JFrame documentViewer;
 	private String filename;
 	
 	
@@ -39,6 +49,7 @@ public class House implements Serializable
 		documentUI = null;
 		currentRoom = null;
 		currentAppliance = null;
+		currentDocument = null;
 		roomList = new LinkedList<Room>();
 		level = 0;
 		filename = DEFAULT_FILENAME;
@@ -64,10 +75,39 @@ public class House implements Serializable
 			documentUI = new Document_UI(currentAppliance,this);
 			applianceUI.setVisible(false);
 		}
+		else if(level == 2)
+		{
+			level = 3;
+			currentDocument = (Document) newObject;
+			documentViewer = new JFrame();
+			documentViewer.setIconImage(new ImageIcon("./icons/Mascot.jpg").getImage());
+			documentViewer.setLayout(new BorderLayout());
+			documentViewer.add(currentDocument.displayFile(), BorderLayout.CENTER);
+			documentViewer.pack();
+			documentViewer.setLocationRelativeTo(null);
+			documentViewer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			JButton backButton = new JButton("back");
+			backButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					back();
+				}
+			});
+			documentViewer.add(backButton, BorderLayout.SOUTH);
+			documentViewer.setVisible(true);
+			documentUI.setVisible(false);
+		}
 	}
 	public void back()
 	{
-		if(level == 2)
+		if(level == 3)
+		{
+			level = 2;
+			//new Appliance_UI(currentRoom,this);
+			documentUI.setVisible(true);
+			documentViewer.setVisible(false);
+		}
+		else if(level == 2)
 		{
 			level = 1;
 			//new Appliance_UI(currentRoom,this);

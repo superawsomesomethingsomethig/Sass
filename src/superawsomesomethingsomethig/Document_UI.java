@@ -19,6 +19,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -56,11 +57,12 @@ public class Document_UI extends JFrame implements Serializable{
 				addDocumenteName = new JTextField("New Appliance Name: ");
 				start();	
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
+				
 		}
 			
 			private void start() 
 			{
+				setIconImage(new ImageIcon("./icons/Mascot.jpg").getImage());
 				setVisible(true);
 				setUpFrame();
 				setUpDocumentPanel();
@@ -121,16 +123,22 @@ public class Document_UI extends JFrame implements Serializable{
 			}
 			
 			private void newDocument() {
+				String newDocumentName = JOptionPane.showInputDialog( null, "Enter name for new document: ", "New Document Name", JOptionPane.PLAIN_MESSAGE);
 				JFileChooser myChooser = new JFileChooser(".");
-				String newDocumentName = JOptionPane.showInputDialog( null, "Enter name for new appliance: ", "New Appliance Name", JOptionPane.PLAIN_MESSAGE);
-		        final int check =  myChooser.showOpenDialog(this);
+		        int check =  myChooser.showOpenDialog(null);
 		        File newFile = null;
 		        if (check == JFileChooser.APPROVE_OPTION)
 		        {
 		            newFile = myChooser.getSelectedFile();
 		        }
-		        myAppliance.create(newDocumentName,newFile);
+		        myAppliance.create(newDocumentName, newFile);
 				newButton(newDocumentName);
+		        myChooser = null;
+				try {
+					House.saveHouse(myHouse, "houseFile.hf");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				repaint();
 				revalidate();
 				repaint();
@@ -138,16 +146,15 @@ public class Document_UI extends JFrame implements Serializable{
 			}
 			
 			private void deleteDocument() {
-//				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
-//				myDocument.destroy(deleteApplianceName);			
-//				startButtons();
-//				repaint();
-//				revalidate();
+				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
+				myAppliance.destroy(deleteApplianceName);	
+				myDocumentList = myAppliance.getList();
 				try {
 					House.saveHouse(myHouse, "houseFile.hf");
 				} catch (IOException e) {
 					e.printStackTrace();
-				}
+				}		
+				startButtons();
 				repaint();
 				revalidate();
 			}
@@ -163,7 +170,7 @@ public class Document_UI extends JFrame implements Serializable{
 		        documentButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println(myAppliance.getDocument(name).getFile());
+						myHouse.generateUI(myAppliance.getDocument(name));
 					}
 				});
 		        
