@@ -11,13 +11,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,8 +30,12 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 //author: @Ella
-public class Document_UI extends JFrame{
+public class Document_UI extends JFrame implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5L;
 	private JPanel documentPanel;
 	private JPanel buttonPanel;
 	private JTextField addDocumenteName;
@@ -45,22 +53,23 @@ public class Document_UI extends JFrame{
 				backPanel = new JPanel();
 				myAppliance = currentAppliance;
 				myHouse = house;
-				//myDocumentList = currentDocument.getList();
+				myDocumentList = myAppliance.getList();
 				addDocumenteName = new JTextField("New Appliance Name: ");
 				start();	
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
+				
 		}
 			
 			private void start() 
 			{
+				setIconImage(new ImageIcon("./icons/Mascot.jpg").getImage());
 				setVisible(true);
 				setUpFrame();
 				setUpDocumentPanel();
 				setUpBackPanel();
 		        pack();
 		        setLocationRelativeTo(null);
-				//startButtons();     
+				startButtons();     
 
 			}
 			
@@ -114,11 +123,17 @@ public class Document_UI extends JFrame{
 			}
 			
 			private void newDocument() {
-//				String addApplianceName = JOptionPane.showInputDialog( null, "Enter name for new appliance: ", "New Appliance Name", JOptionPane.PLAIN_MESSAGE);
-//				myAppliance.create(addDocumenteName);
-//				newButton(addApplianceName);
-//				repaint();
-//				revalidate();
+				String newDocumentName = JOptionPane.showInputDialog( null, "Enter name for new document: ", "New Document Name", JOptionPane.PLAIN_MESSAGE);
+				JFileChooser myChooser = new JFileChooser(".");
+		        int check =  myChooser.showOpenDialog(null);
+		        File newFile = null;
+		        if (check == JFileChooser.APPROVE_OPTION)
+		        {
+		            newFile = myChooser.getSelectedFile();
+		        }
+		        myAppliance.create(newDocumentName, newFile);
+				newButton(newDocumentName);
+		        myChooser = null;
 				try {
 					House.saveHouse(myHouse, "houseFile.hf");
 				} catch (IOException e) {
@@ -126,19 +141,20 @@ public class Document_UI extends JFrame{
 				}
 				repaint();
 				revalidate();
+				repaint();
+				revalidate();
 			}
 			
 			private void deleteDocument() {
-//				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
-//				myDocument.destroy(deleteApplianceName);			
-//				startButtons();
-//				repaint();
-//				revalidate();
+				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
+				myAppliance.destroy(deleteApplianceName);	
+				myDocumentList = myAppliance.getList();
 				try {
 					House.saveHouse(myHouse, "houseFile.hf");
 				} catch (IOException e) {
 					e.printStackTrace();
-				}
+				}		
+				startButtons();
 				repaint();
 				revalidate();
 			}
@@ -154,8 +170,7 @@ public class Document_UI extends JFrame{
 		        documentButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println(name);
-						//myHouse.generateUI(myHouse.getRoom(name));
+						myHouse.generateUI(myAppliance.getDocument(name));
 					}
 				});
 		        

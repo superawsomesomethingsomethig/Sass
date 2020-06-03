@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -35,6 +36,7 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class HomeScreen extends JFrame 
 {
+	ImageIcon icon = new ImageIcon("./icons/Mascot.jpg");
 	private JPanel homePanel;
 	private JPanel buttonPanel;
 	private JButton aboutButton;
@@ -55,6 +57,7 @@ public class HomeScreen extends JFrame
 	}
 	private void start()
 	{
+		setIconImage(icon.getImage());
 		setUpHomePanel();
 		setUpButtonPanel();
 		setUpFrame();
