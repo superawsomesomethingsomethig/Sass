@@ -36,7 +36,7 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class HomeScreen extends JFrame 
 {
-	ImageIcon icon = new ImageIcon("./icons/Mascot.jpg");
+	ImageIcon icon = new ImageIcon("./icons/icon.png");
 	private JPanel homePanel;
 	private JPanel buttonPanel;
 	private JButton aboutButton;
