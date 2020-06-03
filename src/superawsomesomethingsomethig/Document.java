@@ -16,7 +16,11 @@ public class Document implements Serializable
 	private static final long serialVersionUID = 4L;
 	private String name;
 	private File file;
-	
+
+	public Document(String name)
+	{
+		this(name, null);
+	}
 	public Document(String name, File file)
 	{
 		this.name = name;
@@ -27,6 +31,12 @@ public class Document implements Serializable
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public File getFile() {
+		return file;
+	}
+	public void setFile(File file) {
+		this.file = file;
 	}
 	public String toString() {
 		return "Document(\"" + name + "\")";
