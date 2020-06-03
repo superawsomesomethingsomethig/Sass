@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-//author: @Ella
+
 public class Document_UI extends JFrame implements Serializable{
 	
 	/**
@@ -43,6 +43,8 @@ public class Document_UI extends JFrame implements Serializable{
 	private List<Document> myDocumentList;
 	private House myHouse;
 	private JPanel backPanel;
+	private String helpMessage;
+	private boolean isEmpty;
 
 	//constructor
 			public Document_UI(Appliance currentAppliance, House house)
@@ -62,7 +64,7 @@ public class Document_UI extends JFrame implements Serializable{
 			
 			private void start() 
 			{
-				setIconImage(new ImageIcon("./icons/Mascot.jpg").getImage());
+				setIconImage(new ImageIcon("./icons/icon.png").getImage());
 				setVisible(true);
 				setUpFrame();
 				setUpDocumentPanel();
@@ -86,13 +88,23 @@ public class Document_UI extends JFrame implements Serializable{
 			}
 			private void setUpBackPanel() {
 				JButton backButton = new JButton("back");
+				JButton helpButton = new JButton("help");
+				helpMessage = "havent we helped you enough Bob";
 				backButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						myHouse.back();
 					}
 				});
+
+				helpButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						JOptionPane.showMessageDialog(null, helpMessage, "help", JOptionPane.PLAIN_MESSAGE);
+					}
+				});
 				backPanel.add(backButton);
+				backPanel.add(helpButton);
 			}
 			
 			private void setUpDocumentPanel()
@@ -124,16 +136,20 @@ public class Document_UI extends JFrame implements Serializable{
 			
 			private void newDocument() {
 				String newDocumentName = JOptionPane.showInputDialog( null, "Enter name for new document: ", "New Document Name", JOptionPane.PLAIN_MESSAGE);
+				if (newDocumentName != null) {
+					if (newDocumentName.isEmpty()) {
+						isEmpty = true;
+					}
+					if (newDocumentName != null && isEmpty == false) {
 				JFileChooser myChooser = new JFileChooser(".");
 		        int check =  myChooser.showOpenDialog(null);
 		        File newFile = null;
 		        if (check == JFileChooser.APPROVE_OPTION)
 		        {
 		            newFile = myChooser.getSelectedFile();
-		        }
+		        } 
 		        myAppliance.create(newDocumentName, newFile);
-				newButton(newDocumentName);
-		        myChooser = null;
+					}
 				try {
 					House.saveHouse(myHouse, "houseFile.hf");
 				} catch (IOException e) {
@@ -143,11 +159,13 @@ public class Document_UI extends JFrame implements Serializable{
 				revalidate();
 				repaint();
 				revalidate();
+					}
 			}
 			
+			
 			private void deleteDocument() {
-				String deleteApplianceName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
-				myAppliance.destroy(deleteApplianceName);	
+				String deleteDocumentName = JOptionPane.showInputDialog( null, "Enter name of appliance to be deleted: ", "Delete Appliance", JOptionPane.PLAIN_MESSAGE);
+				myAppliance.destroy(deleteDocumentName);	
 				myDocumentList = myAppliance.getList();
 				try {
 					House.saveHouse(myHouse, "houseFile.hf");
