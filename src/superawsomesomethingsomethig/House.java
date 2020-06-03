@@ -74,7 +74,7 @@ public class House implements Serializable
 			applianceUI.setVisible(true);
 			documentUI.setVisible(false);
 		}
-		if(level == 1)
+		else if(level == 1)
 		{
 			level = 0;
 			//new Room_UI(roomList,this);
@@ -124,6 +124,7 @@ public class House implements Serializable
 		if(!removed)
 		{
 			System.out.println("Room does not exist");
+			Room_UI.errorMessage();
 		}
 		try {
 			House.saveHouse(this, filename);

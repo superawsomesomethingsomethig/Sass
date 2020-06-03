@@ -39,6 +39,9 @@ public class Room_UI extends JFrame
 	private String newRoomName;
 	private House myHouse;
 	private JPanel buttonPanel;
+	private JPanel backPanel;
+	private String helpMessage;
+
 	
 
 		//constructor
@@ -47,6 +50,7 @@ public class Room_UI extends JFrame
 			super("Rooms");
 			roomPanel = new JPanel();
 			buttonPanel = new JPanel();
+			backPanel = new JPanel();
 			myHouse = house;
 			myRoomList = roomList;
 			addRoomName = new JTextField("New Room Name: ");
@@ -59,6 +63,7 @@ public class Room_UI extends JFrame
 			setVisible(true);
 			setUpFrame();
 			setUpRoomPanel();
+			setUpBackPanel();
 	        pack();
 	        setLocationRelativeTo(null);
 			startButtons();
@@ -74,6 +79,7 @@ public class Room_UI extends JFrame
 			buttonPanel.setBackground(Color.WHITE);
 			add(roomPanel, BorderLayout.NORTH);
 			add(buttonPanel, BorderLayout.CENTER);
+			add(backPanel, BorderLayout.SOUTH);
 	        repaint();
 			revalidate();
 			
@@ -107,11 +113,26 @@ public class Room_UI extends JFrame
 		}
 		
 		private void newRoom() {
+			boolean isEmpty = false;
 			String addRoomName = JOptionPane.showInputDialog( null, "Enter name for new room: ", "New Room Name", JOptionPane.PLAIN_MESSAGE);
-			myHouse.create(addRoomName);
-			newButton(addRoomName);
-			repaint();
-			revalidate();
+			if (addRoomName != null) {
+
+
+				if (addRoomName.isEmpty()) {
+					isEmpty = true;
+				}
+				if (addRoomName != null && isEmpty == false) {
+
+					myHouse.create(addRoomName);
+					newButton(addRoomName);
+					repaint();
+					revalidate();
+					
+					if (addRoomName.equals("Carole Baskins")) {
+						easterEgg();
+					}
+				}
+			}
 		}
 		
 		private void deleteRoom() {
@@ -155,6 +176,39 @@ public class Room_UI extends JFrame
 				newButton(temp.getName());
 			}
 		}
+		
+	   static void errorMessage() {
+			String errorMessage = "The room you tried to remove does not exist";
+			JOptionPane.showMessageDialog(null, errorMessage, "ERROR!", JOptionPane.PLAIN_MESSAGE);
+		}
+	   
+	   private void setUpBackPanel() {
+		   helpMessage = "havent we helped you enough Bob";
+		   JButton backButton = new JButton("back");
+			JButton helpButton = new JButton("help");
+			helpMessage = "havent we helped you enough Bob";
+			backButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					HomeScreen homeScreen = new HomeScreen();
+					homeScreen.setVisible(true);
+					setVisible(false);
+				}
+			});
+			
+			helpButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(null, helpMessage, "help", JOptionPane.PLAIN_MESSAGE);
+				}
+			});
+			backPanel.add(backButton);
+			backPanel.add(helpButton);
+	   }
+	   
+	   private void easterEgg() {
+		   JOptionPane.showMessageDialog(null, "killed her husband", "Carole Baskins", JOptionPane.PLAIN_MESSAGE);
+	   }
 		
 		
 }

@@ -124,18 +124,31 @@ public class Appliance_UI extends JFrame{
 			}
 			
 			private void newAppliance() {
+				boolean isEmpty = false;
 				String addApplianceName = JOptionPane.showInputDialog( null, "Enter name for new appliance: ", "New Appliance Name", JOptionPane.PLAIN_MESSAGE);
-				myRoom.create(addApplianceName);
-				newButton(addApplianceName);
-				repaint();
-				revalidate();
-				try {
-					House.saveHouse(myHouse, "houseFile.hf");
-				} catch (IOException e) {
-					e.printStackTrace();
+				
+				if (addApplianceName != null) {
+					if (addApplianceName.isEmpty()) {
+						isEmpty = true;
+					}
+					if (addApplianceName != null && isEmpty == false) {
+						myRoom.create(addApplianceName);
+						newButton(addApplianceName);
+						repaint();
+						revalidate();
+						try {
+							House.saveHouse(myHouse, "houseFile.hf");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						repaint();
+						revalidate();
+						
+						if (addApplianceName.equals("Jeffrey Epstein")) {
+							easterEgg();
+						}
+					}
 				}
-				repaint();
-				revalidate();
 			}
 			
 			private void deleteAppliance() {
@@ -187,5 +200,13 @@ public class Appliance_UI extends JFrame{
 				}
 			}
 			
+			 static void errorMessage() {
+					String errorMessage = "The appliance you tried to remove does not exist";
+					JOptionPane.showMessageDialog(null, errorMessage, "ERROR!", JOptionPane.PLAIN_MESSAGE);
+				}
+			 
+			 private void easterEgg() {
+				   JOptionPane.showMessageDialog(null, "didn't kill himself", "Jeffrey Epstein", JOptionPane.PLAIN_MESSAGE);
+			   }
 			
 }
