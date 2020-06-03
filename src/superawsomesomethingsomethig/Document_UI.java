@@ -60,7 +60,7 @@ public class Document_UI extends JFrame{
 				setUpBackPanel();
 		        pack();
 		        setLocationRelativeTo(null);
-				startButtons();     
+				//startButtons();     
 
 			}
 			

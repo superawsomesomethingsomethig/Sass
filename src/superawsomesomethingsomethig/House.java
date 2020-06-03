@@ -74,7 +74,7 @@ public class House implements Serializable
 			applianceUI.setVisible(true);
 			documentUI.setVisible(false);
 		}
-		if(level == 1)
+		else if(level == 1)
 		{
 			level = 0;
 			//new Room_UI(roomList,this);
