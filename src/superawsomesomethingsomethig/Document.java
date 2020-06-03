@@ -2,9 +2,13 @@ package superawsomesomethingsomethig;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
@@ -43,11 +47,33 @@ public class Document implements Serializable
 		return "Document(\"" + name + "\")";
 	}
 	public JPanel displayFile() {
-		JPanel output = new JPanel();
-		output.setLayout(new BorderLayout());
-		
-		// TODO: This
-		
-		return null;
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new ImageJPanel(image);
+	}
+	
+	public static class ImageJPanel extends JPanel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 10L;
+		transient final BufferedImage image;
+		ImageJPanel(BufferedImage image) {
+			super();
+			this.image = image;
+			if (this.image != null) {
+				setPreferredSize(new Dimension(this.image.getWidth(), this.image.getHeight()));
+			}
+		}
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			if (image != null) {
+				g.drawImage(image, 0, 0, this);
+			}
+		}
 	}
 }

@@ -17,6 +17,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -54,6 +55,7 @@ public class Appliance_UI extends JFrame{
 			
 			private void start() 
 			{
+				setIconImage(new ImageIcon("./icons/Mascot.jpg").getImage());
 				setVisible(true);
 				setUpFrame();
 				setUpAppliancePanel();
@@ -158,11 +160,11 @@ public class Appliance_UI extends JFrame{
 				startButtons();
 				repaint();
 				revalidate();
-				//try {
-				//	House.saveHouse(myHouse, "houseFile.hf");
-				//} catch (IOException e) {
-				//	e.printStackTrace();
-				//}
+				try {
+					House.saveHouse(myHouse, "houseFile.hf");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				//repaint();
 				//revalidate();
 			}
