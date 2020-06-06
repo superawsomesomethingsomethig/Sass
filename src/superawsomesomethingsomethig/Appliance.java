@@ -75,4 +75,5 @@ public class Appliance implements Serializable
 		return null;
 		
 	}
+	
 }
