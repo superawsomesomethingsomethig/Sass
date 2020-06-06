@@ -33,7 +33,7 @@ import superawsomesomethingsomethig.Room;
 
 /*
  * Room_UI displays the rooms and works with the House class
- * @author Ella
+ * @author Ella Gainey 
  */
 public class Room_UI extends JFrame
 {
@@ -155,11 +155,6 @@ public class Room_UI extends JFrame
 				newButton(addRoomName);
 				repaint();
 				revalidate();
-
-				//IGNORE THIS
-				if (addRoomName.equals("Carole Baskin")) {
-					easterEgg();
-				}
 			}
 		}
 	}
@@ -237,10 +232,12 @@ public class Room_UI extends JFrame
 	 * and a help button if the user needs assistance operating the UI 
 	 */
 	private void setUpBackPanel() {
-		helpMessage = "havent we helped you enough Bob";
+		helpMessage = "TO ADD ROOM:\n click 'add room' button. You must enter at least one character for room to be added. You can not edit this so make sure you name the room correctly \n"
+				+ "TO DELETE ROOM:\n click 'remove room' button. You must enter name of room exactly or it won't be deleted. If you delete a room, all appliances and documents for that room will be deleted too  \n"
+				+ "TO FIND APPLIANCES:\n you must have a room created, click on the button for that room to see appliances\n"
+				+ "TO GO BACK TO HOME SCREEN: \nclick the back button found next to the help button";
 		JButton backButton = new JButton("back");
 		JButton helpButton = new JButton("help");
-		helpMessage = "havent we helped you enough Bob";
 
 		//back button operations
 		backButton.addActionListener(new ActionListener() {
@@ -263,13 +260,5 @@ public class Room_UI extends JFrame
 		backPanel.add(backButton);
 		backPanel.add(helpButton);
 	}
-
-	/*
-	 * IGNORE THIS
-	 */
-	private void easterEgg() {
-		JOptionPane.showMessageDialog(null, "killed her husband", "Carole Baskins", JOptionPane.PLAIN_MESSAGE);
-	}
-
 
 }

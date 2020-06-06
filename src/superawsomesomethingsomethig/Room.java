@@ -33,10 +33,6 @@ public class Room implements Serializable
 		applianceList.add(appliance);
 	}
 	
-//	public void destroy(Appliance appliance) {
-//		applianceList.remove(appliance);
-//	}
-//	
 	public void destroy(String name) 
 	{
 		int index = 0;
@@ -44,42 +40,21 @@ public class Room implements Serializable
 		for(Iterator<Appliance> listIterator = applianceList.iterator(); listIterator.hasNext();)
 		{
 			Appliance temp = listIterator.next();
-			//4System.out.println(temp.getName() + ',' + name);
 			if(temp.getName().equals(name))
 			{
 				removed = true;
 				applianceList.remove(index);
-				//System.out.println(temp.getName() + ',' + name);
 				break;
 			}
 			index++;
 		}
 		if(!removed)
 		{
-			System.out.println("Room does not exist");
 			Appliance_UI.errorMessage();
 		}
 	}
-	
-	
-//	public void destroy(String name) {
-//	Appliance docToDestroy = null;
-//	for (int i = 0; i < applianceList.size(); i++) {
-//			if (applianceList.get(i).getName().equals(name)) {
-//			docToDestroy = applianceList.get(i);
-//			}
-//	}
-//	if (docToDestroy == null) {
-//			// TODO: Error. Doc not found
-//	} else {
-//		destroy(docToDestroy);
-//	}
-//	}
-	
-	
-	
+
 	public String getName() {
-		System.out.println(name);
 		return name;
 	}
 	

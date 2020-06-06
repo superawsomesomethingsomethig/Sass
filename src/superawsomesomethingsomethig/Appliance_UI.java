@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 
 /*
  * Applaince_UI displays the appliances and works with the Room class
- * @author Ella
+ * @author Ella Gainey
  */
 public class Appliance_UI extends JFrame{
 
@@ -99,7 +99,10 @@ public class Appliance_UI extends JFrame{
 	private void setUpBackPanel() {
 		JButton backButton = new JButton("back");
 		JButton helpButton = new JButton("help");
-		helpMessage = "havent we helped you enough Bob";
+		helpMessage = "TO ADD APPLIANCE: \nclick 'add applaince' button. You must enter at least one character for applaince to be added. You can not edit this so make sure you name correctly \n"
+				+ "TO DELETE APPLIANCE: \nclick 'remove appliance' button. You must enter name of appliance exactly or it won't be deleted. If you delete an appliance, all documents will be deleted too \n"
+				+ "TO FIND DOCUMENTS: \nyou must have an appliance created, click on the button for that appliance to see documents\n"
+				+ "TO GO BACK TO ROOM SCREEN: \nclick the back button found next to the help button";
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -173,6 +176,7 @@ public class Appliance_UI extends JFrame{
 				newButton(addApplianceName);
 				repaint();
 				revalidate();
+				//saving house file
 				try {
 					House.saveHouse(myHouse, "houseFile.hf");
 				} catch (IOException e) {
@@ -180,11 +184,6 @@ public class Appliance_UI extends JFrame{
 				}
 				repaint();
 				revalidate();
-
-				//IGNORE THIS
-				if (addApplianceName.equals("Jeffrey Epstein")) {
-					easterEgg();
-				}
 			}
 		}
 	}
@@ -201,13 +200,12 @@ public class Appliance_UI extends JFrame{
 		startButtons();
 		repaint();
 		revalidate();
+		//saving house file
 		try {
 			House.saveHouse(myHouse, "houseFile.hf");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//repaint();
-		//revalidate();
 	}
 	
 	/*
@@ -228,7 +226,6 @@ public class Appliance_UI extends JFrame{
 		roomButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(name);
 				myHouse.generateUI(myRoom.getAppliance(name));
 			}
 		});
@@ -263,13 +260,6 @@ public class Appliance_UI extends JFrame{
 	static void errorMessage() {
 		String errorMessage = "The appliance you tried to remove does not exist";
 		JOptionPane.showMessageDialog(null, errorMessage, "ERROR!", JOptionPane.PLAIN_MESSAGE);
-	}
-
-	/*
-	 * IGNORE THIS
-	 */
-	private void easterEgg() {
-		JOptionPane.showMessageDialog(null, "didn't kill himself", "Jeffrey Epstein", JOptionPane.PLAIN_MESSAGE);
 	}
 
 }
