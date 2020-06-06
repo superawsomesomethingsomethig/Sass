@@ -9,7 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.sun.prism.Image;
+//import com.sun.prism.Image;
 
 import superawsomesomethingsomethig.Document;
 import superawsomesomethingsomethig.Document.ImageJPanel;

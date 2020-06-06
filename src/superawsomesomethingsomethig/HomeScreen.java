@@ -34,6 +34,12 @@ import javax.swing.SwingConstants;
 
 
 @SuppressWarnings("serial")
+
+/*
+ * HomeScreen is the home screen of our application + calls House/runner class
+ * @author Timmy Roma 
+ * @author Sam Spillers
+ */
 public class HomeScreen extends JFrame 
 {
 	ImageIcon icon = new ImageIcon("./icons/icon.png");
@@ -42,19 +48,28 @@ public class HomeScreen extends JFrame
 	private JButton aboutButton;
 	private JButton settingsButton;
 	private House theHouse;
-	//private aboutPage about;
+	
+	/*
+	 * Constructor
+	 */
 	public HomeScreen() 
 	{
 		super("H.O.M.E");
 		setLayout(new BorderLayout());
 		start();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//try to load house file (if none exists -> create new one)
 		try {
 			theHouse = House.loadHouse("houseFile.hf");
 		} catch (IOException | ClassNotFoundException e) {
 			theHouse = new House();
 		}
 	}
+	
+	/*
+	 * Method that calls all methods to set up frame/panels
+	 * @Timmy Roma
+	 */
 	private void start()
 	{
 		setIconImage(icon.getImage());
@@ -65,22 +80,28 @@ public class HomeScreen extends JFrame
 		setLocationRelativeTo(null);
 	}
 	
-	//author 1: @Timmy
-	//author 2: @Ella
+	/*
+	 * Adds panels and sets background (sets up the frame)
+	 * @author Timmy Roma
+	 * @author Ella Gainey
+	 */
 	private void setUpFrame()
 	{
 		setPreferredSize(new Dimension(800, 500));
 		add(homePanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
-	//author 1: @Timmy
-	//author 2: @Ella
+	
+	/*
+	 * Sets up the home panel. This is where user can see about screen, settings screen, and start application
+	 * @author Timmy Roma
+	 * @author Ella Gainey
+	 */
 	private void setUpHomePanel()
 	{
 		homePanel = new JPanel();
 		homePanel.setLayout(new BorderLayout());
-		//JLabel homeLabel = new JLabel("H.O.M.E");
-		//this button is pressed to open the application's main functionality 
+		//takes up whole panel and is pressed by user to start application
 		JButton homeButton = new JButton("H.O.M.E");
 		homeButton.setFont((new Font("Chalkboard", Font.BOLD, 48)));
 		homeButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -88,20 +109,18 @@ public class HomeScreen extends JFrame
 		homeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//calls start method from main house/runner class
 				theHouse.start();
-				setVisible(false);
+				setVisible(false); //makes home screen invisible so room ui can be seen
 			}
 		});
-		
-		//generate background
-//		ImageIcon image = new ImageIcon("background/background.jpg");
-//		JLabel label = new JLabel("", image, JLabel.CENTER);
-//		homePanel.add( label, BorderLayout.CENTER );
-		
-		//Color homeColor = new Color(0,160,180);
 		homePanel.setBackground(Color.WHITE);
 	}
 	
+	/*
+	 * Method to set up buttons for about panel and settings panel
+	 * @author ????
+	 */
 	private void setUpButtonPanel()
 	{
 		buttonPanel = new JPanel();
