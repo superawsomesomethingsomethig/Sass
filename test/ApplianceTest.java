@@ -1,8 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,12 +26,8 @@ class ApplianceTest {
 		Appliance appliance = new Appliance("testAppliance");
 		appliance.create("testDoc", file);
 		Document doc = appliance.getDocument("testDoc");
-		BufferedImage image = doc.getBufferedImage();
-		assertEquals(225, image.getRaster().getHeight(), "Height should be 225");
-		assertEquals(225, image.getRaster().getWidth(), "Width should be 225");
-		System.out.println(image.toString());
 		assertEquals("testDoc", doc.getName(), "Name should be testDoc");
-
+		// @Sam removed a couple lines here because the Appliance class was changed.
 	}
 
 	// tests that document can be deleted
