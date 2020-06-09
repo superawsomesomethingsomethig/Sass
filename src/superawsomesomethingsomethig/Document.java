@@ -1,83 +1,71 @@
 package superawsomesomethingsomethig;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 
-
+/**
+ * Document class represents a single stored document.
+ * @author Sam Spillers
+ */
 public class Document implements Serializable
 {
 	/**
 	 * Default Serial UID for Document
 	 */
 	private static final long serialVersionUID = 4L;
+	/**
+	 * The name of this document.
+	 */
 	private String name;
+	/**
+	 * The file this document is associated with. The file this document is displaying/representing.
+	 */
 	private File file;
-	private BufferedImage image; 
-	
-	
+
+	/**
+	 * Initializes a new Document object with the given name and file.
+	 * @param name The String name of the object to create.
+	 * @param file The file this Document is associated with.
+	 */
 	public Document(String name, File file)
 	{
 		this.name = name;
 		this.file = file;
-		
-		image = null;
-		try {
-			image = ImageIO.read(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
-	public BufferedImage getBufferedImage() {
-		return image;
-	}
+	/**
+	 * Gets the name of this Document.
+	 * @return The name of this Document.
+	 */
 	public String getName() {
 		return name;
 	}
+	/**
+	 * Sets the name of this Document.
+	 * @param name The new name of this Document.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+	/**
+	 * Gets the File associated with this Document.
+	 * @return The File.
+	 */
 	public File getFile() {
 		return file;
 	}
+	/**
+	 * Set the File associated with this Document.
+	 * @param file The file to associate with this Document.
+	 */
 	public void setFile(File file) {
 		this.file = file;
 	}
+	/**
+	 * Gets the String representation of this Document.
+	 * @return The String representation of this Document.
+	 */
 	public String toString() {
 		return "Document(\"" + name + "\")";
-	}
-	public JPanel displayFile() {
-		
-		return new ImageJPanel(image);
-	}
-	
-	public static class ImageJPanel extends JPanel {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 10L;
-		transient final BufferedImage image;
-		ImageJPanel(BufferedImage image) {
-			super();
-			this.image = image;
-			if (this.image != null) {
-				setPreferredSize(new Dimension(this.image.getWidth(), this.image.getHeight()));
-			}
-		
-		}
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			if (image != null) {
-				g.drawImage(image, 0, 0, this);
-			}
-		}
 	}
 }
