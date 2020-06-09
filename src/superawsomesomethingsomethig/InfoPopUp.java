@@ -4,8 +4,8 @@ import javax.swing.JOptionPane;
 
 
 /*
- * @author Ella
- * helper class to display messages to user when importing/exporting settings
+ * Helper class to display messages to user when importing/exporting settings
+ * @author Ella Gainey
  */
 public class InfoPopUp {
 	

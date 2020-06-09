@@ -21,15 +21,23 @@ public class Document implements Serializable
 	private static final long serialVersionUID = 4L;
 	private String name;
 	private File file;
-
-	public Document(String name)
-	{
-		this(name, null);
-	}
+	private BufferedImage image; 
+	
+	
 	public Document(String name, File file)
 	{
 		this.name = name;
 		this.file = file;
+		
+		image = null;
+		try {
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public BufferedImage getBufferedImage() {
+		return image;
 	}
 	public String getName() {
 		return name;
@@ -47,12 +55,7 @@ public class Document implements Serializable
 		return "Document(\"" + name + "\")";
 	}
 	public JPanel displayFile() {
-		BufferedImage image = null;
-		try {
-			image = ImageIO.read(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		return new ImageJPanel(image);
 	}
 	
@@ -68,6 +71,7 @@ public class Document implements Serializable
 			if (this.image != null) {
 				setPreferredSize(new Dimension(this.image.getWidth(), this.image.getHeight()));
 			}
+		
 		}
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);

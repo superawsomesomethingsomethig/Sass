@@ -17,12 +17,22 @@ import javax.swing.SwingConstants;
 
 
 @SuppressWarnings("serial")
+
+/*
+ * About Page displays name of developers and version number.
+ * @author Timmy Roma
+ * @author Sam Spillers
+ * @author Ella Gainey
+ * @author Wesley Elliot
+ */
 public class AboutPage extends JFrame{
 	
 	private JPanel aboutPanel;
 	private JPanel versionPanel;
 	
-	//constructor
+	/*
+	 * Constructor
+	 */
 	public AboutPage() 
 	{
 		super("About Page");
@@ -31,7 +41,10 @@ public class AboutPage extends JFrame{
 		start();
 	}	
 	
-	//author: @Timmy
+	/*
+	 * Method that calls all methods to set up frame/panels
+	 * @author Timmy Roma
+	 */
 	private void start() 
 	{
 		setVisible(true);
@@ -43,25 +56,30 @@ public class AboutPage extends JFrame{
 
 	}
 	
-	//author: @Timmy
+	/*
+	 * Sets up frame
+	 * @author Timmy Roma
+	 */
 	private void setUpFrame()
 	{
-		//setPreferredSize(new Dimension(400, 300));
 		add(aboutPanel, BorderLayout.CENTER);
 		add(versionPanel, BorderLayout.SOUTH);
 		
 		
 	}
-	//author1: @Timmy
-	//author2: @Ella
-	//author3: @Sam
-	//author4: @Wesley
+	/*
+	 * Method that sets up the about panel with developer names 
+	 * @author Timmy Roma
+	 * @author Ella Gainey
+	 * @author Sam Spillers
+	 * @author Wesley Elliot
+	 */
 	private void setUpAboutPanel()
 	{
 
 		final JTextArea area1 = new JTextArea();
 		area1.setBackground(Color.WHITE);
-		area1.setText("Developers:\nTimmy Roma\nElla Gainey\nSam Spillers\nWesley Elliott");
+		area1.setText("Developers:\nElla Gainey\nTimmy Roma\nSam Spillers\nWesley Elliott");
 		Font font = new Font("Chalboard", Font.PLAIN,15);
 		area1.setFont(font);
 		area1.setEditable(false);
@@ -69,15 +87,21 @@ public class AboutPage extends JFrame{
 		
 	}
 	
-	//author: @Ella
+	/*
+	 * Method that sets up the version panel using the properties file that is updated using build.xml file
+	 * that is run using ant builder on Eclipse
+	 * @author Ella Gainey
+	 */
 	private void setUpVersionPanel()
 	{
 		
 		final JTextArea area2 = new JTextArea("Version:\n ");
 		area2.setEditable(false);
 		versionPanel.add(area2);
+		//properties file 
 		Properties prop = new Properties();
 		InputStream input = null;
+		//load properties file
 		try {
 		input = getClass().getClassLoader().getResourceAsStream("build_info.properties");
 		prop.load(input);

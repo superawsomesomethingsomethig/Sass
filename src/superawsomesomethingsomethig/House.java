@@ -38,7 +38,6 @@ public class House implements Serializable
 	private Room_UI roomUI;
 	private Appliance_UI applianceUI;
 	private Document_UI documentUI;
-	private transient JFrame documentViewer;
 	private String filename;
 	
 	
@@ -75,49 +74,18 @@ public class House implements Serializable
 			documentUI = new Document_UI(currentAppliance,this);
 			applianceUI.setVisible(false);
 		}
-		else if(level == 2)
-		{
-			level = 3;
-			currentDocument = (Document) newObject;
-			documentViewer = new JFrame();
-			documentViewer.setIconImage(new ImageIcon("./icons/Mascot.jpg").getImage());
-			documentViewer.setLayout(new BorderLayout());
-			documentViewer.add(currentDocument.displayFile(), BorderLayout.CENTER);
-			documentViewer.pack();
-			documentViewer.setLocationRelativeTo(null);
-			documentViewer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			JButton backButton = new JButton("back");
-			backButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					back();
-				}
-			});
-			documentViewer.add(backButton, BorderLayout.SOUTH);
-			documentViewer.setVisible(true);
-			documentUI.setVisible(false);
-		}
 	}
 	public void back()
 	{
-		if(level == 3)
-		{
-			level = 2;
-			//new Appliance_UI(currentRoom,this);
-			documentUI.setVisible(true);
-			documentViewer.setVisible(false);
-		}
-		else if(level == 2)
+		if(level == 2)
 		{
 			level = 1;
-			//new Appliance_UI(currentRoom,this);
 			applianceUI.setVisible(true);
 			documentUI.setVisible(false);
 		}
 		else if(level == 1)
 		{
 			level = 0;
-			//new Room_UI(roomList,this);
 			roomUI.setVisible(true);
 			applianceUI.setVisible(false);
 		}
@@ -151,19 +119,16 @@ public class House implements Serializable
 		for(Iterator<Room> listIterator = roomList.iterator(); listIterator.hasNext();)
 		{
 			Room temp = listIterator.next();
-			//4System.out.println(temp.getName() + ',' + name);
 			if(temp.getName().equals(name))
 			{
 				removed = true;
 				roomList.remove(index);
-				//System.out.println(temp.getName() + ',' + name);
 				break;
 			}
 			index++;
 		}
 		if(!removed)
 		{
-			System.out.println("Room does not exist");
 			Room_UI.errorMessage();
 		}
 		try {
