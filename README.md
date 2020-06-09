@@ -21,7 +21,7 @@ Team members: Timmy, Sam, Wesley, and Ella.
 
 [Link to Deliverable 2](https://docs.google.com/document/d/1QYY7kcBJJFQZNJUotEQ3v4zAiUQwDBVX_s2vWF-miFA/edit?usp=sharing)
 
-[Link to Deliverable 3] (https://docs.google.com/document/d/1VzucE4DOGHvXZblyaW2gPQfPVdazssmcvpoMoej3O4U/edit?usp=sharing)
+[Link to Deliverable 3](https://docs.google.com/document/d/1VzucE4DOGHvXZblyaW2gPQfPVdazssmcvpoMoej3O4U/edit?usp=sharing)
 
 #### Contact
 
