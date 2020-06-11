@@ -79,7 +79,7 @@ public class AboutPage extends JFrame{
 
 		final JTextArea area1 = new JTextArea();
 		area1.setBackground(Color.WHITE);
-		area1.setText("Developers:\nElla Gainey\nRimmy Toma\nSam Spilled milk\nWesley Elliott");
+		area1.setText("Developers:\nElla Gainey\nTimmy Roma\nSam Spillers\nWesley Elliott");
 		Font font = new Font("Chalboard", Font.PLAIN,15);
 		area1.setFont(font);
 		area1.setEditable(false);
