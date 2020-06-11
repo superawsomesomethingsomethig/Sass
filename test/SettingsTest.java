@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import junit.framework.Assert;
 import superawsomesomethingsomethig.Settings;
 
+//@Wesley Elliott
 class SettingsTest {
 
 	@BeforeEach
@@ -17,13 +18,14 @@ class SettingsTest {
 	void tearDown() throws Exception {
 	}
 
+	// tests the import and export methods
 	@Test
-	void testImportAndExport () {
+	void testImportAndExport() {
 		Settings setting = new Settings("Wesley", "Email");
 		setting.exportFile("outputfile.txt");
 		Settings setting2 = new Settings("outputfile.txt");
-		Assert.assertEquals(setting.getFirstName(),setting2.getFirstName());
-		Assert.assertEquals(setting.getEmail(),setting2.getEmail());
+		Assert.assertEquals(setting.getFirstName(), setting2.getFirstName());
+		Assert.assertEquals(setting.getEmail(), setting2.getEmail());
 	}
 
 }
