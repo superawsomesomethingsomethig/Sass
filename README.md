@@ -1,7 +1,7 @@
 
 ## TCSS 360 "SASS" project group!
 
-Last updated: June 10, 2020 
+Last updated: June 16, 2020 
 
 Team members: Timmy, Sam, Wesley, and Ella. 
 
