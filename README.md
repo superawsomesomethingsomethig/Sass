@@ -23,6 +23,8 @@ Team members: Timmy, Sam, Wesley, and Ella.
 
 [Link to Deliverable 3](https://docs.google.com/document/d/1VzucE4DOGHvXZblyaW2gPQfPVdazssmcvpoMoej3O4U/edit?usp=sharing)
 
+<hr> 
+
 #### Contact
 
 Contact email: superawsomeemail43212 *at* gmail *dot* com
